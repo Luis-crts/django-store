@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda</title>
+</head>
+<body>
+
+<!-- DIV 1: Encabezado -->
+<div style="background: #222; padding: 20px; color: white;">
+    <h1>Mi Tienda Online</h1>
+</div>
+
+<!-- Contenedor principal -->
+<div style="display: flex; gap: 20px; padding: 20px;">
+
+    <!-- DIV 2: Productos (8/12 del espacio) -->
+    <div style="flex: 8;">
+        <h2>Productos</h2>
+
+        {% for producto in productos %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+                
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="150">
+                {% endif %}
+                
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.descripcion }}</p>
+                <strong>Precio: ${{ producto.precio }}</strong>
+            </div>
+        {% empty %}
+            <p>No hay productos disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <!-- DIV 3: Filtros (4/12 del espacio) -->
+    <div style="flex: 4; border: 1px solid #ccc; padding: 10px;">
+        <h2>Filtros</h2>
+        <p>Aquí irán filtros más adelante.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
