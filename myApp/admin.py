@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Carrito, CarritoItem, Orden, OrdenItem
+from .models import (Categoria, Producto, ProductoImagen, Carrito, CarritoItem, Orden, OrdenItem, Insumo)
 
-
+# -------- CATEGORIA --------
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'descripcion')
@@ -9,6 +9,14 @@ class CategoriaAdmin(admin.ModelAdmin):
     ordering = ('nombre',)
 
 
+# -------- PRODUCTO IMÁGENES INLINE --------
+class ProductoImagenInline(admin.TabularInline):
+    model = ProductoImagen
+    extra = 1
+    max_num = 3
+
+
+# -------- PRODUCTOS --------
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'categoria', 'precio', 'stock', 'activo')
@@ -16,8 +24,10 @@ class ProductoAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'descripcion')
     list_editable = ('precio', 'stock', 'activo')
     ordering = ('categoria', 'nombre')
+    inlines = [ProductoImagenInline]
 
 
+# -------- CARRITO --------
 @admin.register(Carrito)
 class CarritoAdmin(admin.ModelAdmin):
     list_display = ('id', 'usuario', 'creado')
@@ -33,6 +43,7 @@ class CarritoItemAdmin(admin.ModelAdmin):
     list_filter = ('producto',)
 
 
+# -------- ORDEN --------
 @admin.register(Orden)
 class OrdenAdmin(admin.ModelAdmin):
     list_display = ('id', 'usuario', 'estado', 'fecha')
@@ -48,5 +59,14 @@ class OrdenItemAdmin(admin.ModelAdmin):
     list_editable = ('precio_unitario', 'cantidad')
     list_filter = ('producto',)
     search_fields = ('producto__nombre',)
+
+
+# -------- INSUMOS (inventario) --------
+@admin.register(Insumo)
+class InsumoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre', 'tipo', 'cantidad', 'unidad', 'marca', 'color')
+    search_fields = ('nombre', 'tipo', 'marca', 'color')
+    list_filter = ('tipo', 'marca', 'color')
+
 
 
