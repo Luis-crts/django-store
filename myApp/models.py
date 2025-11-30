@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
@@ -19,13 +20,17 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
     
+def producto_imagen_path(instance, filename):
+    categoria = slugify(instance.producto.categoria.nombre) 
+    return f"productos/{categoria}/{filename}"
+    
 class ProductoImagen(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='imagenes')
-    imagen = models.ImageField(upload_to='productos/')
+    imagen = models.ImageField(upload_to= producto_imagen_path)
 
     def __str__(self):
         return f"Imagen de {self.producto.nombre}"
-    
+
     
 class Carrito(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
