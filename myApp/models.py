@@ -44,6 +44,7 @@ class CarritoItem(models.Model):
         return f"{self.cantidad} x {self.producto.nombre}"
     
 class Orden(models.Model):
+
     ESTADOS = (
         ('solicitado', 'Solicitado'),
         ('aprobado', 'Aprobado'),
@@ -54,12 +55,36 @@ class Orden(models.Model):
         ('cancelada', 'Cancelada'),
     )
 
+    ORIGENES = (
+        ('facebook', 'Facebook'),
+        ('instagram', 'Instagram'),
+        ('whatsapp', 'WhatsApp'),
+        ('presencial', 'Presencial'),
+        ('web', 'Sitio Web'),
+        ('otro', 'Otro'),
+    )
+
+    PAGO_ESTADO = (
+        ('pendiente', 'Pendiente'),
+        ('parcial', 'Parcial'),
+        ('pagado', 'Pagado'),
+    )
+
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(max_length=20, choices=ESTADOS, default='solicitado')
+    origen = models.CharField(max_length=20, choices=ORIGENES, default='web')
+    pago_estado = models.CharField(max_length=20, choices=PAGO_ESTADO, default='pendiente')
 
     def __str__(self):
         return f"Orden #{self.id} - {self.usuario.username}"
+    
+class OrdenImagen(models.Model):
+    orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='imagenes')
+    imagen = models.ImageField(upload_to='ordenes/')
+
+    def __str__(self):
+        return f"Imagen de orden {self.orden.id}"
     
 class OrdenItem(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='items')

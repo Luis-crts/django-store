@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Categoria, Producto, ProductoImagen, Carrito, CarritoItem, Orden, OrdenItem, Insumo)
+from .models import (Categoria, Producto, ProductoImagen, Carrito, CarritoItem, Orden, OrdenItem, Insumo, OrdenImagen)
 
 # -------- CATEGORIA --------
 @admin.register(Categoria)
@@ -68,5 +68,7 @@ class InsumoAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'tipo', 'marca', 'color')
     list_filter = ('tipo', 'marca', 'color')
 
-
+class OrdenImagenInline(admin.TabularInline):
+    model = OrdenImagen
+    extra = 1
 
