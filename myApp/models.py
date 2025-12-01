@@ -41,22 +41,6 @@ class ProductoImagen(models.Model):
         return f"Imagen de {self.producto.nombre}"
 
     
-class Carrito(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    creado = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Carrito de {self.usuario.username}"
-
-
-class CarritoItem(models.Model):
-    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE, related_name='items')
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    cantidad = models.PositiveIntegerField(default=1)
-
-    def __str__(self):
-        return f"{self.cantidad} x {self.producto.nombre}"
-    
 class Orden(models.Model):
     ESTADO_CHOICES = (
         ('solicitado', 'Solicitado'),

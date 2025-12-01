@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import (Categoria, Producto, ProductoImagen, Carrito, CarritoItem, Orden, OrdenItem, Insumo, OrdenImagen)
+from .models import (Categoria, Producto, ProductoImagen, Orden, OrdenItem, OrdenImagen, Insumo)
 
 # -------- CATEGORIA --------
 @admin.register(Categoria)
@@ -28,23 +28,7 @@ class ProductoAdmin(admin.ModelAdmin):
     inlines = [ProductoImagenInline]
 
 
-# -------- CARRITO --------
-@admin.register(Carrito)
-class CarritoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'usuario', 'creado')
-    search_fields = ('usuario__username',)
-    ordering = ('creado',)
-
-
-@admin.register(CarritoItem)
-class CarritoItemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'carrito', 'producto', 'cantidad')
-    list_editable = ('cantidad',)
-    search_fields = ('producto__nombre',)
-    list_filter = ('producto',)
-
-
-# -------- ORDEN --------
+# Apartado de ordenes
 class OrdenImagenInline(admin.TabularInline):
     model = OrdenImagen
     extra = 0

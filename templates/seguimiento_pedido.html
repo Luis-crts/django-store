@@ -32,7 +32,7 @@
     </div>
 
     <h5>Imágenes de referencia</h5>
-    <div class="row">
+    <div class="row mb-4">
         {% for img in orden.imagenes.all %}
             <div class="col-md-3 mb-3">
                 <a href="{{ img.imagen.url }}" target="_blank">
@@ -42,6 +42,11 @@
         {% empty %}
             <p>No se subieron imágenes.</p>
         {% endfor %}
+    </div>
+
+    <div class="d-flex gap-2 mt-4">
+        <a href="{% url 'home' %}" class="btn btn-secondary">← Volver a la tienda</a>
+        <a href="{% url 'solicitar_producto' %}" class="btn btn-primary">+ Hacer otro pedido</a>
     </div>
 </div>
 
