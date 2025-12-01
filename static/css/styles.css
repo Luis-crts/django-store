@@ -1,0 +1,134 @@
+/* ===== ESTILOS GENERALES ===== */
+body {
+    background: #f8f9fa;
+}
+
+.header {
+    background: #222;
+    padding: 30px 0;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+/* ===== CARDS DE PRODUCTO (HOME) ===== */
+.producto-card {
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #ddd;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Imagen dentro de la card */
+.producto-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;      /* puedes cambiar a contain si quieres verla completa */
+    background: #e0e0e0;
+}
+
+/* Textos de la card */
+.card-body h5 {
+    font-size: 16px;
+    height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.card-body p {
+    font-size: 13px;
+    color: #666;
+    height: 36px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.precio {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.stock {
+    font-size: 12px;
+    color: #999;
+}
+
+.sin-productos {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+/* ===== FILTROS LATERALES ===== */
+.filtro-categoria {
+    list-style: none;
+    padding: 0;
+}
+
+.filtro-categoria li {
+    margin-bottom: 8px;
+}
+
+.filtro-categoria a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.filtro-categoria a:hover {
+    background: #e9ecef;
+}
+
+.filtro-categoria a.active {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.limpiar-filtros {
+    margin-top: 10px;
+}
+
+/* ===== DETALLE PRODUCTO ===== */
+.detalle-main {
+    padding: 30px 0;
+}
+
+.detalle-imagen-principal {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    background: #f1f1f1;
+}
+
+.detalle-galeria img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.detalle-precio {
+    font-size: 24px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.detalle-stock {
+    margin-bottom: 15px;
+}
