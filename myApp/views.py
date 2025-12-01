@@ -5,13 +5,15 @@ from django.db.models import Q
 
 
 def home(request):
-    productos = Producto.objects.filter(activo=True)
+    productos = Producto.objects.filter(activo=True).order_by('-id')  # Ordena por ID descendente
     categorias = Categoria.objects.all()
     
     # Filtro por categoría
     categoria_id = request.GET.get('categoria')
+    categoria_seleccionada = None
     if categoria_id:
         productos = productos.filter(categoria_id=categoria_id)
+        categoria_seleccionada = get_object_or_404(Categoria, pk=categoria_id)
     
     # Buscador
     q = request.GET.get('q')
@@ -21,14 +23,16 @@ def home(request):
             Q(descripcion__icontains=q)
         )
     
-    # se ven 15 productos por página 
-    paginator = Paginator(productos, 15)
+    # se ven 9 productos por página 
+    paginator = Paginator(productos, 9)
     page_number = request.GET.get('page')
     productos = paginator.get_page(page_number)
     
     context = {
         'productos': productos,
         'categorias': categorias,
+        'categoria_seleccionada': categoria_seleccionada,
+        'q': q,
     }
     return render(request, 'home.html', context)
 

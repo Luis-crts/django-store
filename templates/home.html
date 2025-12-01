@@ -74,13 +74,45 @@
             padding: 60px 20px;
             color: #999;
         }
+        
+        .filtro-categoria {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .filtro-categoria li {
+            margin-bottom: 8px;
+        }
+        
+        .filtro-categoria a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .filtro-categoria a:hover {
+            background: #e9ecef;
+        }
+        
+        .filtro-categoria a.active {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .limpiar-filtros {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
 <div class="header">
     <div class="container">
-        <h1>Mi Tienda Online</h1>
+        <h1>Tienda con artículos personalizados</h1>
     </div>
 </div>
 
@@ -103,7 +135,7 @@
                                     </div>
                                 {% endif %}
                                 
-                                <!-- Informacion del producto -->
+                                <!-- Información del producto -->
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">
                                         <a href="{% url 'detalle_producto' producto.pk %}" class="text-decoration-none text-dark">
@@ -128,7 +160,7 @@
                     {% endfor %}
                 </div>
                 
-                <!-- mas paginas -->
+                <!-- Paginación -->
                 {% if productos.has_other_pages %}
                     <nav aria-label="Paginación" class="mb-5">
                         <ul class="pagination justify-content-center">
@@ -171,12 +203,74 @@
             {% endif %}
         </div>
 
-        <!-- Filtros -->
+        <!-- Filtros Sidebar -->
         <div class="col-lg-3">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Buscar</h5>
+                    <form method="GET" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Buscar productos..." value="{{ q }}">
+                            <button class="btn btn-primary" type="submit">🔍</button>
+                        </div>
+                        {% if q %}
+                            <a href="?" class="btn btn-sm btn-outline-secondary mt-2 w-100">Limpiar búsqueda</a>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Filtros</h5>
-                    <p class="card-text">Filtros disponibles próximamente.</p>
+                    <h5 class="card-title">Categorías</h5>
+                    <ul class="filtro-categoria">
+                        <li>
+                            {% if categoria_seleccionada %}
+                                {% if q %}
+                                    <a href="?q={{ q }}">Todas</a>
+                                {% else %}
+                                    <a href="?">Todas</a>
+                                {% endif %}
+                            {% else %}
+                                {% if q %}
+                                    <a href="?q={{ q }}" class="active">Todas</a>
+                                {% else %}
+                                    <a href="?" class="active">Todas</a>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                        {% for categoria in categorias %}
+                            <li>
+                                {% if categoria_seleccionada.id == categoria.id %}
+                                    {% if q %}
+                                        <a href="?categoria={{ categoria.id }}&q={{ q }}" class="active">
+                                            {{ categoria.nombre }}
+                                        </a>
+                                    {% else %}
+                                        <a href="?categoria={{ categoria.id }}" class="active">
+                                            {{ categoria.nombre }}
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    {% if q %}
+                                        <a href="?categoria={{ categoria.id }}&q={{ q }}">
+                                            {{ categoria.nombre }}
+                                        </a>
+                                    {% else %}
+                                        <a href="?categoria={{ categoria.id }}">
+                                            {{ categoria.nombre }}
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                    {% if categoria_seleccionada or q %}
+                        <div class="limpiar-filtros">
+                            <a href="?" class="btn btn-sm btn-outline-secondary w-100">Limpiar filtros</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
