@@ -10,7 +10,8 @@ urlpatterns = [
     path('producto/<int:pk>/', views.detalle_producto, name='detalle_producto'),
     path('producto/<int:pk>/solicitar/', views.solicitar_producto, name='solicitar_producto'),
     path('pedido/<str:token>/', views.seguimiento_pedido, name='seguimiento_pedido'),
-    path('seguimientos/', views.listar_seguimientos, name='listar_seguimientos'),  
+    path('seguimientos/', views.listar_seguimientos, name='listar_seguimientos'),
+    path('reportes/', views.reportes, name='reportes'), 
 ]
 
 if settings.DEBUG:

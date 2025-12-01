@@ -22,34 +22,32 @@ body {
     margin: 0;
     font-size: 28px;
     font-weight: 600;
+    color: white;
 }
 
-
-/* pequeño botón para volver  */
-.back-link {
+/* Botón volver a la tienda */
+.header-back {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
     display: inline-block;
-    background: #222;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    margin-bottom: 16px;
-    border: 1px solid rgba(255,255,255,0.06);
+    transition: opacity 0.3s;
 }
-.back-link:hover,
-.back-link:focus {
-    background: #111;
+
+.header-back:hover {
+    opacity: 0.8;
     color: #fff;
     text-decoration: none;
 }
 
-/* ===== DETALLE PRODUCTO ===== */
+/*  Detalle producto  */
 .detalle-main {
     padding: 30px 0;
 }
 
 .detalle-img-wrap {
-    background: #efefef; 
+    background: #efefef;
     padding: 40px 30px;
     display: flex;
     align-items: center;
@@ -65,18 +63,18 @@ body {
     display: block;
 }
 
-/* detalles a la derecha */
 .detalle-precio {
     font-size: 28px;
     font-weight: bold;
     color: #27ae60;
     margin-top: 10px;
 }
+
 .detalle-stock .badge {
     margin-top: 10px;
 }
 
-/* Mantener compatibilidad con carousel interno */
+/* Mantener estos parametros para que no crache  */
 .detalle-galeria img {
     width: 100%;
     height: 100px;
@@ -84,18 +82,7 @@ body {
     cursor: pointer;
 }
 
-.header {
-    background: #222;
-    padding: 30px 0;
-    color: white;
-    margin-bottom: 30px;
-}
-
-.header h1 {
-    margin: 0;
-}
-
-/* ===== CARDS DE PRODUCTO (HOME) ===== */
+/* Cards de producto (home.html) */
 .producto-card {
     height: 100%;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -107,15 +94,13 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Imagen dentro de los card */
 .producto-imagen {
     width: 100%;
     height: 200px;
-    object-fit: cover;      
+    object-fit: cover;
     background: #e0e0e0;
 }
 
-/* Textos de la card */
 .card-body h5 {
     font-size: 16px;
     height: 40px;
@@ -136,7 +121,7 @@ body {
 }
 
 .precio {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #27ae60;
 }
@@ -152,7 +137,7 @@ body {
     color: #999;
 }
 
-/* ===== FILTROS LATERALES ===== */
+/* Filtros laterales */
 .filtro-categoria {
     list-style: none;
     padding: 0;

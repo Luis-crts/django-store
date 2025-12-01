@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.urls import reverse
 from .models import Producto, Categoria, Orden, OrdenImagen, OrdenItem
-from django.db.models import Q
+from django.db.models import Count, Q, Sum
+from django.db import models
 import secrets
 
 def home(request):
@@ -98,7 +99,7 @@ def solicitar_producto(request, pk=None):
                 estado_pago='pendiente',
             )
 
-            # guardar imágenes si es que las hay
+            # guardar imagenes si es que las hay
             files = request.FILES.getlist('imagenes')
             for f in files:
                 OrdenImagen.objects.create(orden=orden, imagen=f)
@@ -136,7 +137,7 @@ def listar_seguimientos(request):
     """Mostrar todos los pedidos creados"""
     ordenes = Orden.objects.all().order_by('-creado')
     
-    # Opcional: filtro por estado
+    #filtro por estado
     estado = request.GET.get('estado')
     if estado:
         ordenes = ordenes.filter(estado=estado)
@@ -152,3 +153,44 @@ def listar_seguimientos(request):
         'estado_filtro': estado,
     }
     return render(request, 'listar_seguimientos.html', context)
+
+def reportes(request):
+    """Dashboard de reportes"""
+    # Producto mas pagado
+    producto_mas_pedido = (
+        OrdenItem.objects
+        .filter(orden__estado_pago='pagado')
+        .values('producto')
+        .annotate(cantidad_pedidos=Count('id'))
+        .order_by('-cantidad_pedidos')
+        .first()
+    )
+    
+    producto_data = None
+    if producto_mas_pedido:
+        producto = Producto.objects.get(pk=producto_mas_pedido['producto'])
+        producto_data = {
+            'producto': producto,
+            'cantidad_pedidos': producto_mas_pedido['cantidad_pedidos'],
+        }
+    
+    # Total de pedidos
+    total_pedidos = Orden.objects.count()
+    pedidos_pagados = Orden.objects.filter(estado_pago='pagado').count()
+    pedidos_pendientes = Orden.objects.filter(estado_pago='pendiente').count()
+    
+    # Total de ingresos 
+    total_ingresos = (
+        OrdenItem.objects
+        .filter(orden__estado_pago='pagado')
+        .aggregate(total=models.Sum('precio_unitario'))['total'] or 0
+    )
+    
+    context = {
+        'producto_mas_pedido': producto_data,
+        'total_pedidos': total_pedidos,
+        'pedidos_pagados': pedidos_pagados,
+        'pedidos_pendientes': pedidos_pendientes,
+        'total_ingresos': total_ingresos,
+    }
+    return render(request, 'reportes.html', context)
