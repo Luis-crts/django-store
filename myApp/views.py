@@ -6,10 +6,8 @@ from django.db.models import Q
 import secrets
 
 def home(request):
-    q = request.GET.get('q', '')  # evitar None
-    # Mostrar solo productos cuya categoría sea de tipo 'producto'
+    q = request.GET.get('q', '')  
     productos = Producto.objects.filter(activo=True, categoria__tipo='producto').order_by('-id')
-    # Mostrar solo categorías de tipo 'producto' que tengan productos activos
     categorias = Categoria.objects.filter(tipo='producto', productos__activo=True).distinct()
 
     categoria_id = request.GET.get('categoria')
@@ -51,7 +49,6 @@ def solicitar_producto(request, pk=None):
         producto = get_object_or_404(Producto, pk=pk, activo=True)
 
     error = None
-    # Preservar valores en caso de re-render
     initial = {
         'nombre': '',
         'email': '',
@@ -69,7 +66,6 @@ def solicitar_producto(request, pk=None):
         descripcion = request.POST.get('descripcion', '').strip()
         fecha_necesaria = request.POST.get('fecha_necesaria') or None
 
-        # conservar para re-render si hay error
         initial.update({
             'nombre': nombre,
             'email': email,
@@ -79,11 +75,9 @@ def solicitar_producto(request, pk=None):
             'fecha_necesaria': fecha_necesaria or '',
         })
 
-        # validar email obligatorio
         if not email:
             error = "El correo electrónico es obligatorio."
         else:
-            # construir campo contacto compacto para el modelo
             contacto_parts = [f"email: {email}"]
             if contact_value:
                 contacto_parts.append(f"{contact_method}: {contact_value}")
@@ -91,7 +85,6 @@ def solicitar_producto(request, pk=None):
                 contacto_parts.append(f"{contact_method}: -")
             contacto_text = " | ".join(contacto_parts)
 
-            # generar token seguro
             token = secrets.token_urlsafe(12)
             orden = Orden.objects.create(
                 token=token,
@@ -105,20 +98,24 @@ def solicitar_producto(request, pk=None):
                 estado_pago='pendiente',
             )
 
-            # guardar imágenes si las hay
+            # guardar imágenes si es que las hay
             files = request.FILES.getlist('imagenes')
             for f in files:
                 OrdenImagen.objects.create(orden=orden, imagen=f)
 
             if producto:
-                OrdenItem.objects.create(
-                    orden=orden,
-                    producto=producto,
-                    cantidad=1,
-                    precio_unitario=getattr(producto, 'precio', None)
-                )
-
-            return redirect('seguimiento_pedido', token=orden.token)
+                if producto.stock <= 0:
+                    error = "Lo sentimos, este producto ya no tiene stock disponible."
+                else:
+                    OrdenItem.objects.create(
+                        orden=orden,
+                        producto=producto,
+                        cantidad=1,
+                        precio_unitario=getattr(producto, 'precio', None)
+                    )
+                    producto.stock -= 1
+                    producto.save()
+                    return redirect('seguimiento_pedido', token=orden.token)
 
     context = {
         'producto': producto,
