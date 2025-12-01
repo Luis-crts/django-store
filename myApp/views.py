@@ -131,3 +131,24 @@ def seguimiento_pedido(request, token):
         'orden': orden,
     }
     return render(request, 'seguimiento_pedido.html', context)
+
+def listar_seguimientos(request):
+    """Mostrar todos los pedidos creados"""
+    ordenes = Orden.objects.all().order_by('-creado')
+    
+    # Opcional: filtro por estado
+    estado = request.GET.get('estado')
+    if estado:
+        ordenes = ordenes.filter(estado=estado)
+    
+    # Paginación: 10 pedidos por página
+    paginator = Paginator(ordenes, 10)
+    page_number = request.GET.get('page')
+    ordenes = paginator.get_page(page_number)
+    
+    context = {
+        'ordenes': ordenes,
+        'estados': Orden.ESTADO_CHOICES,
+        'estado_filtro': estado,
+    }
+    return render(request, 'listar_seguimientos.html', context)

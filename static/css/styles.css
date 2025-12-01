@@ -9,21 +9,23 @@ body {
     color: white;
     margin-bottom: 30px;
 }
+
 .header .container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
-.header-back {
-    color: #fff;
-    text-decoration: none;
+
+.header h1 {
+    margin: 0;
     font-size: 28px;
     font-weight: 600;
-    display: inline-block;
 }
 
-/* pequeño botón volver (si se usa dentro del contenido) */
+
+/* pequeño botón para volver  */
 .back-link {
     display: inline-block;
     background: #222;
@@ -47,7 +49,7 @@ body {
 }
 
 .detalle-img-wrap {
-    background: #efefef; /* franjas laterales visibles */
+    background: #efefef; 
     padding: 40px 30px;
     display: flex;
     align-items: center;
