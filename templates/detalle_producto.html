@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ producto.nombre }}</title>
+</head>
+<body>
+
+<div style="background: #222; padding: 20px; color: white;">
+    <h1><a href="{% url 'home' %}" style="color: white;">← Volver</a></h1>
+</div>
+
+<div style="padding: 20px;">
+    <h1>{{ producto.nombre }}</h1>
+    <p>{{ producto.descripcion }}</p>
+    <h2>Precio: ${{ producto.precio }}</h2>
+    <p>Stock: {{ producto.stock }}</p>
+
+    <!-- Imágenes del producto -->
+    <h3>Imágenes</h3>
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        {% for imagen in producto.imagenes.all %}
+            <img src="{{ imagen.imagen.url }}" alt="Imagen" width="200">
+        {% empty %}
+            <p>Sin imágenes disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Productos relacionados -->
+    {% if relacionados %}
+    <h3>Productos Relacionados</h3>
+    <div style="display: flex; gap: 10px;">
+        {% for prod in relacionados %}
+            <div style="border: 1px solid #ccc; padding: 10px; width: 150px;">
+                <h4><a href="{% url 'detalle_producto' prod.pk %}">{{ prod.nombre }}</a></h4>
+                <p>${{ prod.precio }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

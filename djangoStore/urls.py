@@ -7,8 +7,10 @@ from myApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  
+    path('producto/<int:pk>/', views.detalle_producto, name='detalle_producto'),
+    path('producto/<int:pk>/solicitar/', views.solicitar_producto, name='solicitar_producto'),
+    path('pedido/<str:token>/', views.seguimiento_pedido, name='seguimiento_pedido'),  
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
