@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import (Categoria, Producto, ProductoImagen, Carrito, CarritoItem, Orden, OrdenItem, Insumo, OrdenImagen)
 
 # -------- CATEGORIA --------
@@ -44,21 +45,37 @@ class CarritoItemAdmin(admin.ModelAdmin):
 
 
 # -------- ORDEN --------
+class OrdenImagenInline(admin.TabularInline):
+    model = OrdenImagen
+    extra = 0
+    readonly_fields = ('imagen_tag',)
+
+    def imagen_tag(self, obj):
+        if obj.imagen:
+            return format_html('<img src="{}" style="max-height:100px;"/>', obj.imagen.url)
+        return ''
+    imagen_tag.short_description = 'Imagen'
+
+class OrdenItemInline(admin.TabularInline):
+    model = OrdenItem
+    extra = 0
+
 @admin.register(Orden)
 class OrdenAdmin(admin.ModelAdmin):
-    list_display = ('id', 'usuario', 'estado', 'fecha')
-    list_filter = ('estado', 'fecha')
-    search_fields = ('usuario__username',)
-    list_editable = ('estado',)
-    ordering = ('-fecha',)
+    list_display = ('token', 'cliente_nombre', 'contacto', 'producto_referencia', 'get_estado_display', 'get_estado_pago_display', 'creado')
+    list_filter = ('estado', 'estado_pago', 'creado')
+    search_fields = ('token', 'cliente_nombre', 'contacto', 'descripcion')
+    ordering = ('-creado',)
+    readonly_fields = ('token', 'creado', 'actualizado')
+    inlines = (OrdenItemInline, OrdenImagenInline)
 
+@admin.register(OrdenImagen)
+class OrdenImagenAdmin(admin.ModelAdmin):
+    list_display = ('orden', 'imagen')
 
 @admin.register(OrdenItem)
 class OrdenItemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'orden', 'producto', 'precio_unitario', 'cantidad')
-    list_editable = ('precio_unitario', 'cantidad')
-    list_filter = ('producto',)
-    search_fields = ('producto__nombre',)
+    list_display = ('orden', 'producto', 'cantidad', 'precio_unitario')
 
 
 # -------- INSUMOS (inventario) --------
@@ -67,8 +84,4 @@ class InsumoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'tipo', 'cantidad', 'unidad', 'marca', 'color')
     search_fields = ('nombre', 'tipo', 'marca', 'color')
     list_filter = ('tipo', 'marca', 'color')
-
-class OrdenImagenInline(admin.TabularInline):
-    model = OrdenImagen
-    extra = 1
 

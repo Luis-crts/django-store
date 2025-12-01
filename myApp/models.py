@@ -1,10 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+import uuid
+
+def generate_token():
+    return uuid.uuid4().hex
 
 class Categoria(models.Model):
+    TIPO_CHOICES = (
+        ('producto', 'Producto'),
+        ('insumo', 'Insumo'),
+    )
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True)
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='producto')
 
     def __str__(self):
         return self.nombre
@@ -49,56 +58,47 @@ class CarritoItem(models.Model):
         return f"{self.cantidad} x {self.producto.nombre}"
     
 class Orden(models.Model):
-
-    ESTADOS = (
+    ESTADO_CHOICES = (
         ('solicitado', 'Solicitado'),
-        ('aprobado', 'Aprobado'),
         ('en_proceso', 'En proceso'),
-        ('realizada', 'Realizada'),
-        ('entregada', 'Entregada'),
-        ('finalizada', 'Finalizada'),
-        ('cancelada', 'Cancelada'),
+        ('completado', 'Completado'),
+        ('cancelado', 'Cancelado'),
     )
-
-    ORIGENES = (
-        ('facebook', 'Facebook'),
-        ('instagram', 'Instagram'),
-        ('whatsapp', 'WhatsApp'),
-        ('presencial', 'Presencial'),
-        ('web', 'Sitio Web'),
-        ('otro', 'Otro'),
-    )
-
-    PAGO_ESTADO = (
+    PAGO_CHOICES = (
         ('pendiente', 'Pendiente'),
-        ('parcial', 'Parcial'),
         ('pagado', 'Pagado'),
     )
 
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    fecha = models.DateTimeField(auto_now_add=True)
-    estado = models.CharField(max_length=20, choices=ESTADOS, default='solicitado')
-    origen = models.CharField(max_length=20, choices=ORIGENES, default='web')
-    pago_estado = models.CharField(max_length=20, choices=PAGO_ESTADO, default='pendiente')
+    token = models.CharField(max_length=48, unique=True, editable=False, default=generate_token)
+    cliente_nombre = models.CharField(max_length=200, default='', blank=True)
+    contacto = models.CharField(max_length=200, help_text="Email / teléfono / red social", default='', blank=True)
+    producto_referencia = models.ForeignKey('Producto', null=True, blank=True, on_delete=models.SET_NULL)
+    descripcion = models.TextField(blank=True)
+    plataforma = models.CharField(max_length=100, default='pagina web')
+    fecha_necesaria = models.DateField(null=True, blank=True)
+    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='solicitado')
+    estado_pago = models.CharField(max_length=20, choices=PAGO_CHOICES, default='pendiente')
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Orden #{self.id} - {self.usuario.username}"
-    
+        return f"Orden {self.token} - {self.cliente_nombre}"
+
 class OrdenImagen(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='imagenes')
-    imagen = models.ImageField(upload_to='ordenes/')
+    imagen = models.ImageField(upload_to='ordenes/%Y/%m/%d/')
 
     def __str__(self):
-        return f"Imagen de orden {self.orden.id}"
-    
+        return f"Imagen orden {self.orden.token}"
+
 class OrdenItem(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='items')
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+    producto = models.ForeignKey(Producto, on_delete=models.SET_NULL, null=True)
     cantidad = models.PositiveIntegerField(default=1)
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.cantidad} x {self.producto.nombre}"
+        return f"{self.cantidad}x {self.producto} ({self.orden.token})"
     
 class Insumo(models.Model):
     nombre = models.CharField(max_length=100)

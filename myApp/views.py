@@ -1,33 +1,33 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-from .models import Producto, Categoria
+from django.urls import reverse
+from .models import Producto, Categoria, Orden, OrdenImagen, OrdenItem
 from django.db.models import Q
-
+import secrets
 
 def home(request):
-    productos = Producto.objects.filter(activo=True).order_by('-id')  # Ordena por ID descendente
-    categorias = Categoria.objects.all()
-    
-    # Filtro por categoría
+    q = request.GET.get('q', '')  # evitar None
+    # Mostrar solo productos cuya categoría sea de tipo 'producto'
+    productos = Producto.objects.filter(activo=True, categoria__tipo='producto').order_by('-id')
+    # Mostrar solo categorías de tipo 'producto' que tengan productos activos
+    categorias = Categoria.objects.filter(tipo='producto', productos__activo=True).distinct()
+
     categoria_id = request.GET.get('categoria')
     categoria_seleccionada = None
     if categoria_id:
+        categoria_seleccionada = get_object_or_404(Categoria, pk=categoria_id, tipo='producto')
         productos = productos.filter(categoria_id=categoria_id)
-        categoria_seleccionada = get_object_or_404(Categoria, pk=categoria_id)
-    
-    # Buscador
-    q = request.GET.get('q')
+
     if q:
         productos = productos.filter(
             Q(nombre__icontains=q) |
             Q(descripcion__icontains=q)
         )
-    
-    # se ven 9 productos por página 
+
     paginator = Paginator(productos, 9)
     page_number = request.GET.get('page')
     productos = paginator.get_page(page_number)
-    
+
     context = {
         'productos': productos,
         'categorias': categorias,
@@ -45,9 +45,92 @@ def detalle_producto(request, pk):
     }
     return render(request, 'detalle_producto.html', ctx)
 
-def solicitar_producto(request, pk):
-    producto = get_object_or_404(Producto, pk=pk)
-    return render(request, 'solicitar_producto.html', {'producto': producto})
+def solicitar_producto(request, pk=None):
+    producto = None
+    if pk:
+        producto = get_object_or_404(Producto, pk=pk, activo=True)
+
+    error = None
+    # Preservar valores en caso de re-render
+    initial = {
+        'nombre': '',
+        'email': '',
+        'contact_method': 'WhatsApp',
+        'contact_value': '',
+        'descripcion': '',
+        'fecha_necesaria': '',
+    }
+
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre', '').strip()
+        email = request.POST.get('email', '').strip()
+        contact_method = request.POST.get('contact_method', '').strip()
+        contact_value = request.POST.get('contact_value', '').strip()
+        descripcion = request.POST.get('descripcion', '').strip()
+        fecha_necesaria = request.POST.get('fecha_necesaria') or None
+
+        # conservar para re-render si hay error
+        initial.update({
+            'nombre': nombre,
+            'email': email,
+            'contact_method': contact_method,
+            'contact_value': contact_value,
+            'descripcion': descripcion,
+            'fecha_necesaria': fecha_necesaria or '',
+        })
+
+        # validar email obligatorio
+        if not email:
+            error = "El correo electrónico es obligatorio."
+        else:
+            # construir campo contacto compacto para el modelo
+            contacto_parts = [f"email: {email}"]
+            if contact_value:
+                contacto_parts.append(f"{contact_method}: {contact_value}")
+            else:
+                contacto_parts.append(f"{contact_method}: -")
+            contacto_text = " | ".join(contacto_parts)
+
+            # generar token seguro
+            token = secrets.token_urlsafe(12)
+            orden = Orden.objects.create(
+                token=token,
+                cliente_nombre=nombre or 'Cliente',
+                contacto=contacto_text,
+                producto_referencia=producto,
+                descripcion=descripcion,
+                fecha_necesaria=fecha_necesaria or None,
+                plataforma='pagina web',
+                estado='solicitado',
+                estado_pago='pendiente',
+            )
+
+            # guardar imágenes si las hay
+            files = request.FILES.getlist('imagenes')
+            for f in files:
+                OrdenImagen.objects.create(orden=orden, imagen=f)
+
+            if producto:
+                OrdenItem.objects.create(
+                    orden=orden,
+                    producto=producto,
+                    cantidad=1,
+                    precio_unitario=getattr(producto, 'precio', None)
+                )
+
+            return redirect('seguimiento_pedido', token=orden.token)
+
+    context = {
+        'producto': producto,
+        'error': error,
+        'initial': initial,
+    }
+    return render(request, 'solicitar_producto.html', context)
+
 
 def seguimiento_pedido(request, token):
-    return render(request, 'seguimiento_pedido.html', {'token': token})
+    orden = get_object_or_404(Orden, token=token)
+    context = {
+        'orden': orden,
+    }
+    return render(request, 'seguimiento_pedido.html', context)
