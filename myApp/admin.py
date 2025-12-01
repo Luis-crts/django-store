@@ -2,33 +2,51 @@ from django.contrib import admin
 from django.utils.html import format_html
 from .models import (Categoria, Producto, ProductoImagen, Orden, OrdenItem, OrdenImagen, Insumo)
 
-# -------- CATEGORIA --------
+# Categoria 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'descripcion')
+    list_display = ('nombre', 'tipo')
+    list_filter = ('tipo',)
     search_fields = ('nombre',)
-    ordering = ('nombre',)
 
-
-# -------- PRODUCTO IMÁGENES INLINE --------
+# Productos
 class ProductoImagenInline(admin.TabularInline):
     model = ProductoImagen
     extra = 1
     max_num = 3
 
 
-# -------- PRODUCTOS --------
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'categoria', 'precio', 'stock', 'activo')
+    list_display = ('nombre', 'precio', 'stock', 'activo', 'categoria')
     list_filter = ('categoria', 'activo')
-    search_fields = ('nombre', 'descripcion')
-    list_editable = ('precio', 'stock', 'activo')
-    ordering = ('categoria', 'nombre')
+    search_fields = ('nombre',)
     inlines = [ProductoImagenInline]
 
+# Insumos
+@admin.register(Insumo)
+class InsumoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'categoria', 'tipo', 'cantidad', 'unidad', 'marca', 'color')
+    list_filter = ('categoria', 'marca')
+    search_fields = ('nombre',)
+    list_editable = ('cantidad',)
+    fieldsets = (
+        ('Información básica', {
+            'fields': ('nombre', 'categoria', 'tipo', 'marca', 'color')
+        }),
+        ('Inventario', {
+            'fields': ('cantidad', 'unidad')
+        }),
+    )
 
-# Apartado de ordenes
+# Ordenes
+class OrdenItemInline(admin.TabularInline):
+    model = OrdenItem
+    extra = 0
+    fields = ('producto', 'cantidad', 'precio_unitario')
+    list_editable = ['cantidad']
+
+# para imagenes de la orden
 class OrdenImagenInline(admin.TabularInline):
     model = OrdenImagen
     extra = 0
@@ -40,18 +58,28 @@ class OrdenImagenInline(admin.TabularInline):
         return ''
     imagen_tag.short_description = 'Imagen'
 
-class OrdenItemInline(admin.TabularInline):
-    model = OrdenItem
-    extra = 0
-
 @admin.register(Orden)
 class OrdenAdmin(admin.ModelAdmin):
-    list_display = ('token', 'cliente_nombre', 'contacto', 'producto_referencia', 'get_estado_display', 'get_estado_pago_display', 'creado')
+    list_display = ('token', 'cliente_nombre', 'estado', 'estado_pago', 'producto_referencia', 'creado')
     list_filter = ('estado', 'estado_pago', 'creado')
-    search_fields = ('token', 'cliente_nombre', 'contacto', 'descripcion')
+    list_editable = ('estado', 'estado_pago')
+    search_fields = ('token', 'cliente_nombre', 'contacto')
     ordering = ('-creado',)
     readonly_fields = ('token', 'creado', 'actualizado')
     inlines = (OrdenItemInline, OrdenImagenInline)
+    
+    fieldsets = (
+        ('Información del pedido', {
+            'fields': ('token', 'cliente_nombre', 'contacto', 'creado', 'actualizado')
+        }),
+        ('Producto y detalles', {
+            'fields': ('producto_referencia', 'descripcion', 'fecha_necesaria', 'plataforma')
+        }),
+        ('Estado', {
+            'fields': ('estado', 'estado_pago'),
+            'classes': ('wide',)
+        }),
+    )
 
 @admin.register(OrdenImagen)
 class OrdenImagenAdmin(admin.ModelAdmin):
@@ -60,12 +88,6 @@ class OrdenImagenAdmin(admin.ModelAdmin):
 @admin.register(OrdenItem)
 class OrdenItemAdmin(admin.ModelAdmin):
     list_display = ('orden', 'producto', 'cantidad', 'precio_unitario')
-
-
-# -------- INSUMOS (inventario) --------
-@admin.register(Insumo)
-class InsumoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'tipo', 'cantidad', 'unidad', 'marca', 'color')
-    search_fields = ('nombre', 'tipo', 'marca', 'color')
-    list_filter = ('tipo', 'marca', 'color')
+    list_editable = ('cantidad',)
+    search_fields = ('orden__token', 'producto__nombre')
 

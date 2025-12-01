@@ -60,13 +60,18 @@ class Orden(models.Model):
     descripcion = models.TextField(blank=True)
     plataforma = models.CharField(max_length=100, default='pagina web')
     fecha_necesaria = models.DateField(null=True, blank=True)
-    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='solicitado')
-    estado_pago = models.CharField(max_length=20, choices=PAGO_CHOICES, default='pendiente')
+    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='solicitado', verbose_name='Estado del pedido')
+    estado_pago = models.CharField(max_length=20, choices=PAGO_CHOICES, default='pendiente', verbose_name='Estado de pago')
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Orden {self.token} - {self.cliente_nombre}"
+
+    class Meta:
+        verbose_name = 'Orden'
+        verbose_name_plural = 'Órdenes'
+        ordering = ['-creado']
 
 class OrdenImagen(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='imagenes')
@@ -78,19 +83,27 @@ class OrdenImagen(models.Model):
 class OrdenItem(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='items')
     producto = models.ForeignKey(Producto, on_delete=models.SET_NULL, null=True)
-    cantidad = models.PositiveIntegerField(default=1)
+    cantidad = models.PositiveIntegerField(default=1, verbose_name='Cantidad pedida')
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return f"{self.cantidad}x {self.producto} ({self.orden.token})"
+
+    class Meta:
+        verbose_name = 'Ítem de orden'
+        verbose_name_plural = 'Ítems de orden'
     
 class Insumo(models.Model):
     nombre = models.CharField(max_length=100)
-    tipo = models.CharField(max_length=100)
-    cantidad = models.FloatField()
-    unidad = models.CharField(max_length=20, blank=True, null=True)
-    marca = models.CharField(max_length=100, blank=True, null=True)
-    color = models.CharField(max_length=50, blank=True, null=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'tipo': 'insumo'})
+    tipo = models.CharField(max_length=100, blank=True, default='')
+    cantidad = models.FloatField(default=0)
+    unidad = models.CharField(max_length=50, blank=True, default='')
+    marca = models.CharField(max_length=100, blank=True, default='')
+    color = models.CharField(max_length=50, blank=True, default='')
 
     def __str__(self):
-        return f"{self.nombre} - {self.cantidad}{self.unidad or ''}"
+        return self.nombre
+
+    class Meta:
+        ordering = ['-id']
