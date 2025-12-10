@@ -18,26 +18,39 @@ class ProductoImagenInline(admin.TabularInline):
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'precio', 'stock', 'activo', 'categoria')
+    list_display = ('imagen_preview', 'nombre', 'precio', 'stock', 'activo', 'categoria')
     list_filter = ('categoria', 'activo')
     search_fields = ('nombre',)
     inlines = [ProductoImagenInline]
+    
+    def imagen_preview(self, obj):
+        imagen = obj.imagenes.first()
+        if imagen and imagen.imagen:
+            return format_html('<img src="{}" style="max-width:300px; max-height:300px;"/>', imagen.imagen.url)
+        return 'Sin imagen'
+    imagen_preview.short_description = 'Vista previa'
 
 # Insumos
 @admin.register(Insumo)
 class InsumoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'categoria', 'tipo', 'cantidad', 'unidad', 'marca', 'color')
+    list_display = ('imagen_preview', 'nombre', 'categoria', 'tipo', 'cantidad', 'unidad', 'marca', 'color')
     list_filter = ('categoria', 'marca')
     search_fields = ('nombre',)
     list_editable = ('cantidad',)
     fieldsets = (
         ('Información básica', {
-            'fields': ('nombre', 'categoria', 'tipo', 'marca', 'color')
+            'fields': ('nombre', 'categoria', 'tipo', 'marca', 'color', 'imagen')
         }),
         ('Inventario', {
             'fields': ('cantidad', 'unidad')
         }),
     )
+    
+    def imagen_preview(self, obj):
+        if obj.imagen:
+            return format_html('<img src="{}" style="max-width:300px; max-height:300px;"/>', obj.imagen.url)
+        return 'Sin imagen'
+    imagen_preview.short_description = 'Vista previa'
 
 # Ordenes
 class OrdenItemInline(admin.TabularInline):

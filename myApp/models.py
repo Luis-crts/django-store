@@ -101,6 +101,7 @@ class Insumo(models.Model):
     unidad = models.CharField(max_length=50, blank=True, default='')
     marca = models.CharField(max_length=100, blank=True, default='')
     color = models.CharField(max_length=50, blank=True, default='')
+    imagen = models.ImageField(upload_to='insumos/', null=True, blank=True)
 
     def __str__(self):
         return self.nombre
