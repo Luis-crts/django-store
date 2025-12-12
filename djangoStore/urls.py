@@ -3,6 +3,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from myApp import views
+from myApp.views_reports import vista_reporte, reporte_dashboard
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,6 +15,9 @@ urlpatterns = [
     path('seguimientos/', views.listar_seguimientos, name='listar_seguimientos'),
     path('reportes/', views.reportes, name='reportes'),
     path('api/', include('myApp.api_urls')),
+    path("reporte/", vista_reporte, name="vista_reporte"),
+    path("dashboard/", reporte_dashboard, name="reporte_dashboard"),
+
 
 ]
 
