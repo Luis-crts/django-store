@@ -1,18 +1,19 @@
-from rest_framework import viewsets
-from .models import Insumo, Orden
-from .serializers import InsumoSerializer, OrdenSerializer
+from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.utils.dateparse import parse_date
-from rest_framework import mixins, viewsets
+
+from .models import Insumo, Orden
+from .serializers import InsumoSerializer, OrdenSerializer
 
 
-# ========== API 1: CRUD COMPLETO INSUMOS ==========
+# ========= API 1 =========
 class InsumoViewSet(viewsets.ModelViewSet):
     queryset = Insumo.objects.all()
     serializer_class = InsumoSerializer
 
 
+# ========= API 2 =========
 class PedidoRestrictedViewSet(
     mixins.CreateModelMixin,
     mixins.UpdateModelMixin,
@@ -22,26 +23,25 @@ class PedidoRestrictedViewSet(
     serializer_class = OrdenSerializer
 
 
+# ========= API 3 =========
 @api_view(["GET"])
-def filtrar_pedidos(request):
-    fecha_inicio = request.GET.get("fecha_inicio")
-    fecha_fin = request.GET.get("fecha_fin")
-    estado = request.GET.get("estado")
-    limite = request.GET.get("limite")
-
+def filtrar_pedidos(request, inicio, fin, estado, limite):
     pedidos = Orden.objects.all()
 
+    fecha_inicio = parse_date(f"{inicio[:4]}-{inicio[4:6]}-{inicio[6:]}")
+    fecha_fin = parse_date(f"{fin[:4]}-{fin[4:6]}-{fin[6:]}")
+
     if fecha_inicio:
-        pedidos = pedidos.filter(creado__date__gte=parse_date(fecha_inicio))
+        pedidos = pedidos.filter(creado__date__gte=fecha_inicio)
 
     if fecha_fin:
-        pedidos = pedidos.filter(creado__date__lte=parse_date(fecha_fin))
+        pedidos = pedidos.filter(creado__date__lte=fecha_fin)
 
-    if estado:
+    if estado.lower() != "todos":
         pedidos = pedidos.filter(estado=estado)
 
-    if limite and limite.isdigit():
-        pedidos = pedidos[:int(limite)]
+    pedidos = pedidos[:limite]
 
     serializer = OrdenSerializer(pedidos, many=True)
     return Response(serializer.data)
+
