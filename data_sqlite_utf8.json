@@ -1,0 +1,1781 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-11-30T22:06:43.639Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Poleras",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-11-30T22:07:04.145Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Tazas",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-11-30T22:08:16.623Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Filamento 3D",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-11-30T22:08:20.302Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Filamento 3D",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-11-30T22:08:37.966Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "Cuadernos",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-11-30T22:08:53.958Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "Fundas de celulares",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-12-01T01:39:20.244Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "filamento PLA blanco - 15.0kg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-12-01T01:40:02.320Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "filamento PLA rojo - 15.0kg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-12-01T02:12:46.985Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "polera blanca",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de polera blanca\"}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de polera blanca\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-12-01T03:12:14.430Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "taza blue heat",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza blue heat\"}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza blue heat\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-12-01T03:16:17.225Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "cuaderno negro",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de cuaderno negro\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-12-01T03:17:23.552Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "4",
+    "object_repr": "cuaderno rojo",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de cuaderno rojo\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-12-01T03:18:36.619Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "5",
+    "object_repr": "funda de celular de cuero",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda de celular de cuero\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-12-01T03:22:17.448Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "funda de celular para redmi 10c",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda de celular para redmi 10c\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-12-01T03:24:17.619Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "7",
+    "object_repr": "funda para celular galaxy note 10",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda para celular galaxy note 10\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-12-01T03:26:10.106Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "8",
+    "object_repr": "polera negra",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de polera negra\"}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de polera negra\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-12-01T03:28:36.098Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "9",
+    "object_repr": "taza blanca",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza blanca\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-12-01T03:29:48.448Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "10",
+    "object_repr": "taza de spider-man",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza de spider-man\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-12-01T03:31:35.791Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "11",
+    "object_repr": "taza de superman",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza de superman\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-12-01T03:33:56.652Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "polerones",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-12-01T03:35:22.608Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "12",
+    "object_repr": "poleron negro",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de poleron negro\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-12-01T03:37:03.092Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "13",
+    "object_repr": "poleron blanco",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de poleron blanco\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-12-01T03:38:57.796Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "14",
+    "object_repr": "polerón rojo",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de poler\\u00f3n rojo\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-12-01T03:40:37.145Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "15",
+    "object_repr": "funda de celular de plastico",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda de celular de plastico\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-12-01T03:42:17.514Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "16",
+    "object_repr": "cuaderno naranjo",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de cuaderno naranjo\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-12-01T03:44:47.801Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "17",
+    "object_repr": "taza de porcelana",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza de porcelana\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-12-01T03:46:01.141Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "18",
+    "object_repr": "taza blanca",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de taza blanca\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-12-01T03:47:46.043Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "19",
+    "object_repr": "polera azul",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de polera azul\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-12-01T04:03:04.142Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "20",
+    "object_repr": "filamento 3d azul",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de filamento 3d azul\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-12-01T10:13:30.396Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "Orden IGkS-dI1cEPsJ4HR - richard",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Estado\", \"Estado pago\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-12-01T10:31:13.389Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "11",
+    "object_repr": "taza de superman",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Activo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-12-01T10:31:27.997Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "10",
+    "object_repr": "taza de spider-man",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Activo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-12-01T10:32:01.628Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "15",
+    "object_repr": "funda de celular de plastico",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Activo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-12-01T10:34:45.475Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "21",
+    "object_repr": "funda azul para samsung",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda azul para samsung\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-12-01T10:36:13.087Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "22",
+    "object_repr": "funda para celular iphone 14",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda para celular iphone 14\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-12-01T10:36:50.872Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "21",
+    "object_repr": "funda azul para samsung",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-12-01T10:39:16.541Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "23",
+    "object_repr": "funda para iphpne xs",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"producto imagen\", \"object\": \"Imagen de funda para iphpne xs\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2025-12-01T11:51:22.712Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "filamento PLA rojo - 14.0kg",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Cantidad\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-12-01T11:54:13.946Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "poleras lisas",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2025-12-01T11:54:59.350Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "tazones en blanco",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2025-12-01T11:56:32.039Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "9",
+    "object_repr": "vinilo textil",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2025-12-01T11:57:16.648Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "Resina UV",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2025-12-01T11:58:32.816Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "Papel transfer",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2025-12-01T11:59:12.354Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "PETG",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2025-12-01T12:01:02.615Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Vinilo textil - 15.0Metros",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2025-12-01T12:01:40.448Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "Papel transfer - 100.0hojas",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2025-12-01T12:02:20.563Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "Papel transfer - 100.0hojas",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2025-12-01T12:02:47.139Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "PETG",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2025-12-01T12:08:11.640Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "Papel transfer",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Categoria\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2025-12-01T12:08:19.103Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Vinilo textil",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Categoria\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2025-12-01T12:08:34.019Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Vinilo textil negro",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Nombre\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2025-12-01T12:09:26.365Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Filamento 3D",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tipo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2025-12-01T12:09:33.855Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "filamento PLA rojo",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Categoria\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2025-12-01T12:09:37.562Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "filamento PLA blanco",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Categoria\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2025-12-01T12:10:36.370Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "5",
+    "object_repr": "Resina UV transparente",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2025-12-01T12:10:52.553Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "filamento PLA rojo",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2025-12-01T12:11:00.426Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "filamento PLA blanco",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2025-12-01T12:11:09.648Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "5",
+    "object_repr": "Resina UV transparente",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tipo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2025-12-01T12:11:23.088Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "Papel transfer",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tipo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2025-12-01T12:11:39.473Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Vinilo textil negro",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tipo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2025-12-01T12:14:54.585Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "6",
+    "object_repr": "tazon en blanco",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2025-12-01T12:20:49.416Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "6",
+    "object_repr": "Orden _5aQBYtK85fmKnZj - axel",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Estado del pedido\", \"Estado de pago\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2025-12-01T12:20:49.416Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "5",
+    "object_repr": "Orden 2jGcKTCNwHWu7nE4 - andres",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Estado del pedido\", \"Estado de pago\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2025-12-01T12:20:56.179Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "6",
+    "object_repr": "2x funda azul para samsung (_5aQBYtK85fmKnZj)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Cantidad pedida\"]}}]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$LIacuoqm09JbvVAlvA4wWr$JzalV/l1Md33TnLTfPOUok7cEGAsaBhFC1aEp9qEyHw=",
+    "last_login": "2025-12-13T00:46:56.175Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-28T21:05:06.271Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7u9el9tr94084eqfy8slwh5362f2hu2u",
+  "fields": {
+    "session_data": ".eJxVjEsOgjAUAO_y1qahpbSUpXvPQN6vFjWQUFgZ725IWOh2ZjJvGHHfyrhXXcdJYAALl19GyE-dDyEPnO-L4WXe1onMkZjTVnNbRF_Xs_0bFKwFBnCiKXmffUZE4mDZtpaxJ5d8iKTSRembFFk9c3aJmpgpZg7OShdahc8XB2I4yg:1vUDjW:-J33NWknJwQ6-T14QSY79Qmp5izkpBOw_lAm7D8pByM",
+    "expire_date": "2025-12-27T00:43:38.374Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8vfue1uuixadlks3cb8r2qr3reqzezrj",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk2_lPS5wzWeneDA8iR4qRC3B0ipYD2zcx7iQzbWvPWeckTiYvQ4vS7FcAHtx3QHdptlji3dZmK3BV50C6Hmfh5Pdy_gwq9fmvAoq0lrZyHiHGkCKYYSmc9gmK2BAaCI5sKGfQUQio-WUSjvArsWLw_Ai44jQ:1vTmNo:Nv8XcOn1u7QFddbQJRoJg8SxRouGf_c4hJNvliVpiFM",
+    "expire_date": "2025-12-25T19:31:24.509Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cs75qbmba823al7g8sorajo8t26rtdyv",
+  "fields": {
+    "session_data": ".eJxVjEsOgjAUAO_y1qahpbSUpXvPQN6vFjWQUFgZ725IWOh2ZjJvGHHfyrhXXcdJYAALl19GyE-dDyEPnO-L4WXe1onMkZjTVnNbRF_Xs_0bFKwFBnCiKXmffUZE4mDZtpaxJ5d8iKTSRembFFk9c3aJmpgpZg7OShdahc8XB2I4yg:1vUDmi:aoVYiYrGKpH4i7MbxF0_DESWL8IzYOHIpDxC0PWWbxM",
+    "expire_date": "2025-12-27T00:46:56.596Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pd55k3fqh27ik2am7rfxrozjz187g8yn",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlk2_lPS5wzWeneDA8iR4qRC3B0ipYD2zcx7iQzbWvPWeckTiYvQ4vS7FcAHtx3QHdptlji3dZmK3BV50C6Hmfh5Pdy_gwq9fmvAoq0lrZyHiHGkCKYYSmc9gmK2BAaCI5sKGfQUQio-WUSjvArsWLw_Ai44jQ:1vP5hR:w553nI3tA_RkcTSVjgOySSaqOAez3SyiAo9Cbyoo4rE",
+    "expire_date": "2025-12-12T21:08:17.570Z"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 1,
+  "fields": {
+    "nombre": "Poleras",
+    "descripcion": "Poleras personalizadas con vinilo o sublimacion.",
+    "tipo": "producto"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 2,
+  "fields": {
+    "nombre": "Tazas",
+    "descripcion": "Tazas personalizadas de ceramica",
+    "tipo": "producto"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 3,
+  "fields": {
+    "nombre": "Filamento 3D",
+    "descripcion": "Filamentos PLA y otros para impresión 3D",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 4,
+  "fields": {
+    "nombre": "Cuadernos",
+    "descripcion": "Cuadernos personalizados con diseño exclusivo",
+    "tipo": "producto"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 5,
+  "fields": {
+    "nombre": "Fundas de celulares",
+    "descripcion": "Fundas para celulares con diseños personalizados",
+    "tipo": "producto"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 6,
+  "fields": {
+    "nombre": "polerones",
+    "descripcion": "un poleron que se usa para abrigarse contra el frio",
+    "tipo": "producto"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 7,
+  "fields": {
+    "nombre": "poleras lisas",
+    "descripcion": "poleras lisas listas para poder imprimir imagenes",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 8,
+  "fields": {
+    "nombre": "tazones en blanco",
+    "descripcion": "tazones en blanco listas para poder pintar o añadir cualquier diseño",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 9,
+  "fields": {
+    "nombre": "vinilo textil",
+    "descripcion": "para estampados en poleras y polerones",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 10,
+  "fields": {
+    "nombre": "Resina UV",
+    "descripcion": "impresoras de resina",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 11,
+  "fields": {
+    "nombre": "Papel transfer",
+    "descripcion": "para sublimación en telas",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.categoria",
+  "pk": 12,
+  "fields": {
+    "nombre": "PETG",
+    "descripcion": "un filamento plástico para impresión 3D muy versáti",
+    "tipo": "insumo"
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 1,
+  "fields": {
+    "categoria": 1,
+    "nombre": "polera blanca",
+    "descripcion": "polera lisa blanca minimalista",
+    "precio": "11990.00",
+    "stock": 8,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 2,
+  "fields": {
+    "categoria": 2,
+    "nombre": "taza blue heat",
+    "descripcion": "taza que muestra una imagen al tener una bebida caliente",
+    "precio": "10000.00",
+    "stock": 10,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 3,
+  "fields": {
+    "categoria": 4,
+    "nombre": "cuaderno negro",
+    "descripcion": "cuadernos de 100 páginas de papel",
+    "precio": "6000.00",
+    "stock": 5,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 4,
+  "fields": {
+    "categoria": 4,
+    "nombre": "cuaderno rojo",
+    "descripcion": "cuaderno rojo de 100 paginas de papel",
+    "precio": "6000.00",
+    "stock": 10,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 5,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda de celular de cuero",
+    "descripcion": "funda simple de la marca latour de color cafe",
+    "precio": "9000.00",
+    "stock": 12,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 6,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda de celular para redmi 10c",
+    "descripcion": "funda de celular con un fondo de moto",
+    "precio": "6000.00",
+    "stock": 5,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 7,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda para celular galaxy note 10",
+    "descripcion": "funda reforzada para celulares galaxy note 10",
+    "precio": "7000.00",
+    "stock": 6,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 8,
+  "fields": {
+    "categoria": 1,
+    "nombre": "polera negra",
+    "descripcion": "polera negra para hombres talla L",
+    "precio": "16000.00",
+    "stock": 7,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 9,
+  "fields": {
+    "categoria": 2,
+    "nombre": "taza blanca",
+    "descripcion": "taza blanca que sirve para rellenar 255 ml",
+    "precio": "7000.00",
+    "stock": 5,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 10,
+  "fields": {
+    "categoria": 2,
+    "nombre": "taza de spider-man",
+    "descripcion": "taza del super heroe spiderman para 355 ml",
+    "precio": "9000.00",
+    "stock": 8,
+    "activo": false
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 11,
+  "fields": {
+    "categoria": 2,
+    "nombre": "taza de superman",
+    "descripcion": "taza del hombre de acero para 355 ml",
+    "precio": "8000.00",
+    "stock": 7,
+    "activo": false
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 12,
+  "fields": {
+    "categoria": 6,
+    "nombre": "poleron negro",
+    "descripcion": "polerón negro para hombres talla S",
+    "precio": "17000.00",
+    "stock": 8,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 13,
+  "fields": {
+    "categoria": 6,
+    "nombre": "poleron blanco",
+    "descripcion": "poleron blanco de talla M para hombres",
+    "precio": "18000.00",
+    "stock": 12,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 14,
+  "fields": {
+    "categoria": 6,
+    "nombre": "polerón rojo",
+    "descripcion": "polerón rojo de talla L para hombres",
+    "precio": "20000.00",
+    "stock": 13,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 15,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda de celular de plastico",
+    "descripcion": "funda para celular xiaomi 14 con un fondo de astronauta",
+    "precio": "7000.00",
+    "stock": 3,
+    "activo": false
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 16,
+  "fields": {
+    "categoria": 4,
+    "nombre": "cuaderno naranjo",
+    "descripcion": "cuaderno naranjo de 100 paginas blancas",
+    "precio": "5000.00",
+    "stock": 4,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 17,
+  "fields": {
+    "categoria": 2,
+    "nombre": "taza de porcelana",
+    "descripcion": "taza pequeña de porcelana para 200ml",
+    "precio": "6000.00",
+    "stock": 3,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 18,
+  "fields": {
+    "categoria": 2,
+    "nombre": "taza blanca",
+    "descripcion": "taza blanca para cafe de 100 ml",
+    "precio": "6000.00",
+    "stock": 10,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 19,
+  "fields": {
+    "categoria": 1,
+    "nombre": "polera azul",
+    "descripcion": "polera azul para hombres talla M",
+    "precio": "15000.00",
+    "stock": 12,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 21,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda azul para samsung",
+    "descripcion": "funda azul para celular samsung galaxy a22",
+    "precio": "7000.00",
+    "stock": 3,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 22,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda para celular iphone 14",
+    "descripcion": "funda de color celeste para celulares iphone 14",
+    "precio": "8000.00",
+    "stock": 5,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.producto",
+  "pk": 23,
+  "fields": {
+    "categoria": 5,
+    "nombre": "funda para iphpne xs",
+    "descripcion": "funda de color rosa para celulares iphone xs",
+    "precio": "8000.00",
+    "stock": 4,
+    "activo": true
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 1,
+  "fields": {
+    "producto": 1,
+    "imagen": "productos/poleras/polera-blanca-mc.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 2,
+  "fields": {
+    "producto": 1,
+    "imagen": "productos/poleras/Polera-Blanca-Hombre-Manga-Corta-Algodon-Ideal-para-Serigrafia-Estampar.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 3,
+  "fields": {
+    "producto": 2,
+    "imagen": "productos/tazas/02-Contenido-Variedades-tazas-Blog-Blueheat.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 4,
+  "fields": {
+    "producto": 2,
+    "imagen": "productos/tazas/OIP_1.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 5,
+  "fields": {
+    "producto": 3,
+    "imagen": "productos/cuadernos/OIP_2.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 6,
+  "fields": {
+    "producto": 4,
+    "imagen": "productos/cuadernos/cuaderno-loro-rojo.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 7,
+  "fields": {
+    "producto": 5,
+    "imagen": "productos/fundas-de-celulares/fundas-para-celulares.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 8,
+  "fields": {
+    "producto": 6,
+    "imagen": "productos/fundas-de-celulares/D_NQ_NP_909919-MLU93229544992_092025-O.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 9,
+  "fields": {
+    "producto": 7,
+    "imagen": "productos/fundas-de-celulares/81DQ-GC3AZL._AC_SL1500_.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 10,
+  "fields": {
+    "producto": 8,
+    "imagen": "productos/poleras/Screenshot_2024-02-19_at_11-24-38_negro.jpg__JPEG_Imagen_600___600_pixeles_.png"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 11,
+  "fields": {
+    "producto": 8,
+    "imagen": "productos/poleras/OIP_3.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 12,
+  "fields": {
+    "producto": 9,
+    "imagen": "productos/tazas/OIP_4.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 13,
+  "fields": {
+    "producto": 10,
+    "imagen": "productos/tazas/HARNET-3894.png"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 14,
+  "fields": {
+    "producto": 11,
+    "imagen": "productos/tazas/OIP_5.webp"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 15,
+  "fields": {
+    "producto": 12,
+    "imagen": "productos/polerones/imageUrl_1.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 16,
+  "fields": {
+    "producto": 13,
+    "imagen": "productos/polerones/DSC9286-scaled.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 17,
+  "fields": {
+    "producto": 14,
+    "imagen": "productos/polerones/rot.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 18,
+  "fields": {
+    "producto": 15,
+    "imagen": "productos/fundas-de-celulares/Funda-A1M-scaled.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 19,
+  "fields": {
+    "producto": 16,
+    "imagen": "productos/cuadernos/R.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 20,
+  "fields": {
+    "producto": 17,
+    "imagen": "productos/tazas/IMG_9795-scaled-1.jpeg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 21,
+  "fields": {
+    "producto": 18,
+    "imagen": "productos/tazas/Taza-Café-100-Ml.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 22,
+  "fields": {
+    "producto": 19,
+    "imagen": "productos/poleras/6362753_01-1.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 24,
+  "fields": {
+    "producto": 21,
+    "imagen": "productos/fundas-de-celulares/f4d65ee92908e6282afa1a87a9fd0b4d.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 25,
+  "fields": {
+    "producto": 22,
+    "imagen": "productos/fundas-de-celulares/xl-371706-chehol-iphone-14-pro-max-silicone-case-full-no-log-332.jpg"
+  }
+},
+{
+  "model": "myApp.productoimagen",
+  "pk": 26,
+  "fields": {
+    "producto": 23,
+    "imagen": "productos/fundas-de-celulares/ff5dd6c7f317d3abbec5002e69eb29738967ca43_1024_1024.jpeg"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 1,
+  "fields": {
+    "token": "ZJCh-acjVljRbKOe",
+    "cliente_nombre": "luis",
+    "contacto": "email: luis@gmail.com | Facebook: luis cortes pizarro",
+    "producto_referencia": 19,
+    "descripcion": "que tenga una figura de superman en el pecho",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-04",
+    "estado": "solicitado",
+    "estado_pago": "pendiente",
+    "creado": "2025-12-01T06:39:42.854Z",
+    "actualizado": "2025-12-01T06:39:42.854Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 2,
+  "fields": {
+    "token": "1H2C4Oi6Q4TOWUYn",
+    "cliente_nombre": "jorge",
+    "contacto": "email: jorge@gmail.com | WhatsApp: +569 12345678",
+    "producto_referencia": 16,
+    "descripcion": "que le agreguen un borde negro y al medio un simbolo de la paz",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-06",
+    "estado": "solicitado",
+    "estado_pago": "pendiente",
+    "creado": "2025-12-01T06:49:02.069Z",
+    "actualizado": "2025-12-01T06:49:02.069Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 3,
+  "fields": {
+    "token": "IGkS-dI1cEPsJ4HR",
+    "cliente_nombre": "richard",
+    "contacto": "email: richard@gmail.com | Instagram: @richards_asr",
+    "producto_referencia": 15,
+    "descripcion": "",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-08",
+    "estado": "completado",
+    "estado_pago": "pagado",
+    "creado": "2025-12-01T09:22:09.886Z",
+    "actualizado": "2025-12-01T10:13:30.395Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 4,
+  "fields": {
+    "token": "ttcBr82iTzT7uhk-",
+    "cliente_nombre": "sergio",
+    "contacto": "email: sergio@gmail.com | WhatsApp: +569 87651234",
+    "producto_referencia": 3,
+    "descripcion": "que tenga una simbolo de metallica",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-11",
+    "estado": "solicitado",
+    "estado_pago": "pendiente",
+    "creado": "2025-12-01T10:25:41.646Z",
+    "actualizado": "2025-12-01T10:25:41.646Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 5,
+  "fields": {
+    "token": "2jGcKTCNwHWu7nE4",
+    "cliente_nombre": "andres",
+    "contacto": "email: andres@gmail.com | Facebook: andres.adsa",
+    "producto_referencia": 17,
+    "descripcion": "que tenga una pincelada de un simbolo de la paz",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-08",
+    "estado": "en_proceso",
+    "estado_pago": "pagado",
+    "creado": "2025-12-01T10:30:43.860Z",
+    "actualizado": "2025-12-01T12:20:49.416Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 6,
+  "fields": {
+    "token": "_5aQBYtK85fmKnZj",
+    "cliente_nombre": "axel",
+    "contacto": "email: axel@gmail.com | Sitio Web: -",
+    "producto_referencia": 21,
+    "descripcion": "que tenga una foto del doom eternal",
+    "plataforma": "pagina web",
+    "fecha_necesaria": null,
+    "estado": "en_proceso",
+    "estado_pago": "pagado",
+    "creado": "2025-12-01T10:55:07.748Z",
+    "actualizado": "2025-12-01T12:20:49.414Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 7,
+  "fields": {
+    "token": "e14Cfoj5aSqkWX2k",
+    "cliente_nombre": "jorg",
+    "contacto": "email: jorg@gmail.com | Presencial: el yodo 8180",
+    "producto_referencia": 14,
+    "descripcion": "",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-12",
+    "estado": "solicitado",
+    "estado_pago": "pendiente",
+    "creado": "2025-12-11T03:08:14.978Z",
+    "actualizado": "2025-12-11T03:08:14.978Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 8,
+  "fields": {
+    "token": "4UjNtrBrWtawbx47",
+    "cliente_nombre": "nancy",
+    "contacto": "email: nancy@gmail.com | Facebook: nancy cortes",
+    "producto_referencia": 17,
+    "descripcion": "",
+    "plataforma": "pagina web",
+    "fecha_necesaria": "2025-12-14",
+    "estado": "solicitado",
+    "estado_pago": "pendiente",
+    "creado": "2025-12-11T14:11:57.950Z",
+    "actualizado": "2025-12-11T14:11:57.950Z"
+  }
+},
+{
+  "model": "myApp.orden",
+  "pk": 9,
+  "fields": {
+    "token": "3620e51111804aa1abeb07f48e0cc82e",
+    "cliente_nombre": "jose luis",
+    "contacto": "jose@gmail.com",
+    "producto_referencia": 4,
+    "descripcion": "aksdka",
+    "plataforma": "facebook",
+    "fecha_necesaria": "2025-12-02",
+    "estado": "solicitado",
+    "estado_pago": "pendiente",
+    "creado": "2025-12-12T04:46:50.392Z",
+    "actualizado": "2025-12-12T04:46:50.392Z"
+  }
+},
+{
+  "model": "myApp.ordenimagen",
+  "pk": 1,
+  "fields": {
+    "orden": 1,
+    "imagen": "ordenes/2025/12/01/OIP_7.webp"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 1,
+  "fields": {
+    "orden": 1,
+    "producto": 19,
+    "cantidad": 1,
+    "precio_unitario": "15000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 2,
+  "fields": {
+    "orden": 2,
+    "producto": 16,
+    "cantidad": 1,
+    "precio_unitario": "5000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 3,
+  "fields": {
+    "orden": 3,
+    "producto": 15,
+    "cantidad": 1,
+    "precio_unitario": "7000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 4,
+  "fields": {
+    "orden": 4,
+    "producto": 3,
+    "cantidad": 1,
+    "precio_unitario": "6000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 5,
+  "fields": {
+    "orden": 5,
+    "producto": 17,
+    "cantidad": 1,
+    "precio_unitario": "6000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 6,
+  "fields": {
+    "orden": 6,
+    "producto": 21,
+    "cantidad": 2,
+    "precio_unitario": "7000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 7,
+  "fields": {
+    "orden": 7,
+    "producto": 14,
+    "cantidad": 1,
+    "precio_unitario": "20000.00"
+  }
+},
+{
+  "model": "myApp.ordenitem",
+  "pk": 8,
+  "fields": {
+    "orden": 8,
+    "producto": 17,
+    "cantidad": 1,
+    "precio_unitario": "6000.00"
+  }
+},
+{
+  "model": "myApp.insumo",
+  "pk": 1,
+  "fields": {
+    "nombre": "filamento PLA blanco",
+    "categoria": 3,
+    "tipo": "filamento 3D",
+    "cantidad": 15.0,
+    "unidad": "kg",
+    "marca": "eSun",
+    "color": "blanco",
+    "imagen": ""
+  }
+},
+{
+  "model": "myApp.insumo",
+  "pk": 2,
+  "fields": {
+    "nombre": "filamento PLA rojo",
+    "categoria": 3,
+    "tipo": "filamento 3D",
+    "cantidad": 14.0,
+    "unidad": "kg",
+    "marca": "eSun",
+    "color": "rojo",
+    "imagen": ""
+  }
+},
+{
+  "model": "myApp.insumo",
+  "pk": 3,
+  "fields": {
+    "nombre": "Vinilo textil negro",
+    "categoria": 9,
+    "tipo": "Vinilo",
+    "cantidad": 15.0,
+    "unidad": "Metros",
+    "marca": "Siser",
+    "color": "Negro",
+    "imagen": ""
+  }
+},
+{
+  "model": "myApp.insumo",
+  "pk": 4,
+  "fields": {
+    "nombre": "Papel transfer",
+    "categoria": 11,
+    "tipo": "Paper",
+    "cantidad": 100.0,
+    "unidad": "hojas",
+    "marca": "Forever",
+    "color": "Blanco",
+    "imagen": ""
+  }
+},
+{
+  "model": "myApp.insumo",
+  "pk": 5,
+  "fields": {
+    "nombre": "Resina UV transparente",
+    "categoria": 10,
+    "tipo": "Resina",
+    "cantidad": 5.0,
+    "unidad": "litros",
+    "marca": "elegoo",
+    "color": "transparente",
+    "imagen": ""
+  }
+},
+{
+  "model": "myApp.insumo",
+  "pk": 6,
+  "fields": {
+    "nombre": "tazon en blanco",
+    "categoria": 8,
+    "tipo": "tazon",
+    "cantidad": 36.0,
+    "unidad": "unidades",
+    "marca": "sublimachile",
+    "color": "blanco",
+    "imagen": ""
+  }
+}
+]
