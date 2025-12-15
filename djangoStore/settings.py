@@ -1,6 +1,10 @@
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # -------------------------
 # BASE
@@ -91,10 +95,13 @@ USE_TZ = True
 # STATIC FILES
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [STATIC_DIR]
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 
 STORAGES = {
