@@ -1,9 +1,11 @@
 from pathlib import Path
 import os
 import dj_database_url
-from dotenv import load_dotenv
 
-load_dotenv()
+if os.environ.get("RENDER") is None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
 
 
 # -------------------------
