@@ -8,16 +8,14 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
+
 DEBUG = 'RENDER' not in os.environ
 
 
-
 ALLOWED_HOSTS = ['*']
-
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
 
 
 INSTALLED_APPS = [
@@ -27,12 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myApp',
+
     'rest_framework',
     'cloudinary',
     'cloudinary_storage',
-]
 
+    'myApp',
+]
 
 
 REST_FRAMEWORK = {
@@ -43,7 +42,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
-
 
 
 MIDDLEWARE = [
@@ -59,10 +57,8 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = 'djangoStore.urls'
 WSGI_APPLICATION = 'djangoStore.wsgi.application'
-
 
 
 TEMPLATES = [
@@ -79,7 +75,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 
 DATABASES = {
@@ -112,6 +107,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
+#  ÚNICO STORAGE DE MEDIA
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
@@ -120,12 +116,5 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
-if DEBUG:
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
-    MEDIA_URL = ''
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
