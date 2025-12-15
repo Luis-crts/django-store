@@ -2,12 +2,13 @@ from pathlib import Path
 import os
 import dj_database_url
 
-
+# -------------------------
+# BASE
+# -------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
-
 DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = ["*"]
@@ -64,7 +65,7 @@ TEMPLATES = [
     },
 ]
 
-
+# DATABASE
 DATABASES = {
     "default": dj_database_url.config(
         default="sqlite:///db.sqlite3",
@@ -72,7 +73,7 @@ DATABASES = {
     )
 }
 
-#
+
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -86,25 +87,27 @@ TIME_ZONE = "America/Santiago"
 USE_I18N = True
 USE_TZ = True
 
+
+# STATIC FILES
+
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [STATIC_DIR]
-
-
-STORAGES = {
-    # MEDIA Cloudinary
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-
-    # STATIC WhiteNoise
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+
+STORAGES = {
+    # MEDIA → Cloudinary
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+
+    # STATIC → WhiteNoise
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # CLOUDINARY
 
@@ -113,7 +116,6 @@ CLOUDINARY_STORAGE = {
     "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
-
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
@@ -124,5 +126,5 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
