@@ -50,7 +50,12 @@ class OrdenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Orden
-        fields = '__all__'
+        exclude = (
+            'plataforma',
+            'creado',
+            'actualizado',
+        )
+
 
     def update(self, instance, validated_data):
         estado = validated_data.get("estado", instance.estado)
