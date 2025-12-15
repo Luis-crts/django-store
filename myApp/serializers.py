@@ -48,14 +48,18 @@ class InsumoSerializer(serializers.ModelSerializer):
 # API 2 y 3: /pedidos
 class OrdenSerializer(serializers.ModelSerializer):
 
-    contacto = serializers.CharField()
-
     class Meta:
         model = Orden
         fields = '__all__'
 
-    def validate_contacto(self, value):
-        return validar_contacto(value)
+    def update(self, instance, validated_data):
+        estado = validated_data.get("estado", instance.estado)
+
+        if estado == "completado":
+            validated_data["estado_pago"] = "pagado"
+
+        return super().update(instance, validated_data)
+
 
 
 class OrdenItemSerializer(serializers.ModelSerializer):

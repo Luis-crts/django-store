@@ -48,20 +48,79 @@ class Orden(models.Model):
         ('completado', 'Completado'),
         ('cancelado', 'Cancelado'),
     )
+
     PAGO_CHOICES = (
         ('pendiente', 'Pendiente'),
         ('pagado', 'Pagado'),
     )
 
-    token = models.CharField(max_length=48, unique=True, editable=False, default=generate_token)
-    cliente_nombre = models.CharField(max_length=200, default='', blank=True)
-    contacto = models.CharField(max_length=200, help_text="Email / teléfono / red social", default='', blank=True)
-    producto_referencia = models.ForeignKey('Producto', null=True, blank=True, on_delete=models.SET_NULL)
+    CONTACTO_TIPO_CHOICES = (
+        ('whatsapp', 'WhatsApp'),
+        ('facebook', 'Facebook'),
+        ('instagram', 'Instagram'),
+        ('presencial', 'Presencial'),
+        ('web', 'Sitio Web'),
+        ('otros', 'Otros'),
+    )
+
+    token = models.CharField(
+        max_length=48,
+        unique=True,
+        editable=False,
+        default=generate_token
+    )
+
+    cliente_nombre = models.CharField(
+        max_length=200,
+        default='',
+        blank=True
+    )
+
+    # (SELECT)
+    contacto_tipo = models.CharField(
+        max_length=20,
+        choices=CONTACTO_TIPO_CHOICES
+    )
+
+    # (texto)
+    contacto_valor = models.CharField(
+        max_length=200,
+        blank=True
+    )
+
+    producto_referencia = models.ForeignKey(
+        'Producto',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
+
     descripcion = models.TextField(blank=True)
-    plataforma = models.CharField(max_length=100, default='pagina web')
-    fecha_necesaria = models.DateField(null=True, blank=True)
-    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='solicitado', verbose_name='Estado del pedido')
-    estado_pago = models.CharField(max_length=20, choices=PAGO_CHOICES, default='pendiente', verbose_name='Estado de pago')
+
+    plataforma = models.CharField(
+        max_length=100,
+        default='pagina web'
+    )
+
+    fecha_necesaria = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    estado = models.CharField(
+        max_length=20,
+        choices=ESTADO_CHOICES,
+        default='solicitado',
+        verbose_name='Estado del pedido'
+    )
+
+    estado_pago = models.CharField(
+        max_length=20,
+        choices=PAGO_CHOICES,
+        default='pendiente',
+        verbose_name='Estado de pago'
+    )
+
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
 
@@ -72,6 +131,7 @@ class Orden(models.Model):
         verbose_name = 'Orden'
         verbose_name_plural = 'Órdenes'
         ordering = ['-creado']
+
 
 class OrdenImagen(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='imagenes')
