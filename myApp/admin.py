@@ -19,6 +19,7 @@ class ProductoImagenInline(admin.TabularInline):
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ('imagen_preview', 'nombre', 'precio', 'stock', 'activo', 'categoria')
+    list_display_links = ('nombre',)   # 👈 ESTO LO ARREGLA TODO
     list_filter = ('categoria', 'activo')
     search_fields = ('nombre',)
     inlines = [ProductoImagenInline]
@@ -26,9 +27,13 @@ class ProductoAdmin(admin.ModelAdmin):
     def imagen_preview(self, obj):
         imagen = obj.imagenes.first()
         if imagen and imagen.imagen:
-            return format_html('<img src="{}" style="max-width:300px; max-height:300px;"/>', imagen.imagen.url)
+            return format_html(
+                '<img src="{}" style="max-width:150px; max-height:150px;"/>',
+                imagen.imagen.url
+            )
         return 'Sin imagen'
     imagen_preview.short_description = 'Vista previa'
+
 
 # Insumos
 @admin.register(Insumo)
