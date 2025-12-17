@@ -3,21 +3,25 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 import uuid
 
+
 def generate_token():
     return uuid.uuid4().hex
+
 
 class Categoria(models.Model):
     TIPO_CHOICES = (
         ('producto', 'Producto'),
         ('insumo', 'Insumo'),
     )
+
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='producto')
 
     def __str__(self):
         return self.nombre
-    
+
+
 class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')
     nombre = models.CharField(max_length=150)
@@ -28,20 +32,23 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
+
 def producto_imagen_path(instance, filename):
-    categoria = slugify(instance.producto.categoria.nombre) 
+    categoria = slugify(instance.producto.categoria.nombre)
     return f"productos/{categoria}/{filename}"
-    
+
+
 class ProductoImagen(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='imagenes')
-    imagen = models.ImageField(upload_to= producto_imagen_path)
+    imagen = models.ImageField(upload_to=producto_imagen_path)
 
     def __str__(self):
         return f"Imagen de {self.producto.nombre}"
 
-    
+
 class Orden(models.Model):
+
     ESTADO_CHOICES = (
         ('solicitado', 'Solicitado'),
         ('en_proceso', 'En proceso'),
@@ -63,6 +70,7 @@ class Orden(models.Model):
         ('otros', 'Otros'),
     )
 
+
     token = models.CharField(
         max_length=48,
         unique=True,
@@ -70,21 +78,10 @@ class Orden(models.Model):
         default=generate_token
     )
 
-    cliente_nombre = models.CharField(
-        max_length=200,
-        default='',
-        blank=True
-    )
+    cliente_nombre = models.CharField(max_length=200, default='', blank=True)
 
-    contacto_tipo = models.CharField(
-        max_length=20,
-        choices=CONTACTO_TIPO_CHOICES
-    )
-
-    contacto_valor = models.CharField(
-        max_length=200,
-        blank=True
-    )
+    contacto_tipo = models.CharField(max_length=20, choices=CONTACTO_TIPO_CHOICES)
+    contacto_valor = models.CharField(max_length=200, blank=True)
 
     producto_referencia = models.ForeignKey(
         'Producto',
@@ -95,15 +92,9 @@ class Orden(models.Model):
 
     descripcion = models.TextField(blank=True)
 
-    plataforma = models.CharField(
-        max_length=100,
-        default='pagina web'
-    )
+    plataforma = models.CharField(max_length=100, default='pagina web')
 
-    fecha_necesaria = models.DateField(
-        null=True,
-        blank=True
-    )
+    fecha_necesaria = models.DateField(null=True, blank=True)
 
     estado = models.CharField(
         max_length=20,
@@ -122,6 +113,17 @@ class Orden(models.Model):
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
 
+
+    def save(self, *args, **kwargs):
+
+        if self.estado == 'cancelado' and self.estado_pago == 'pagado':
+            self.estado_pago = 'pendiente'
+
+        if self.estado_pago == 'pagado':
+            self.estado = 'completado'
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"Orden {self.token} - {self.cliente_nombre}"
 
@@ -138,6 +140,7 @@ class OrdenImagen(models.Model):
     def __str__(self):
         return f"Imagen orden {self.orden.token}"
 
+
 class OrdenItem(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='items')
     producto = models.ForeignKey(Producto, on_delete=models.SET_NULL, null=True)
@@ -150,10 +153,17 @@ class OrdenItem(models.Model):
     class Meta:
         verbose_name = 'Ítem de orden'
         verbose_name_plural = 'Ítems de orden'
-    
+
+
 class Insumo(models.Model):
     nombre = models.CharField(max_length=100)
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'tipo': 'insumo'})
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        limit_choices_to={'tipo': 'insumo'}
+    )
     tipo = models.CharField(max_length=100, blank=True, default='')
     cantidad = models.FloatField(default=0)
     unidad = models.CharField(max_length=50, blank=True, default='')
