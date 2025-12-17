@@ -56,20 +56,43 @@ class OrdenSerializer(serializers.ModelSerializer):
             'actualizado',
         )
 
+    #validaciones personalizadas para estado y estado_pago
+    def validate(self, data):
+        estado = data.get('estado')
+        estado_pago = data.get('estado_pago')
+
+        if estado == 'solicitado' and estado_pago != 'pendiente':
+            raise serializers.ValidationError(
+                "Un pedido solicitado no puede estar pagado."
+            )
+
+        if estado == 'completado' and estado_pago != 'pagado':
+            raise serializers.ValidationError(
+                "Un pedido completado debe estar pagado."
+            )
+
+        if estado == 'cancelado' and estado_pago == 'pagado':
+            raise serializers.ValidationError(
+                "Un pedido cancelado no puede estar pagado."
+            )
+
+        return data
 
     def update(self, instance, validated_data):
         estado = validated_data.get("estado", instance.estado)
 
+        # Automatización extra por si a caso
         if estado == "completado":
             validated_data["estado_pago"] = "pagado"
 
         return super().update(instance, validated_data)
-    
+
     def create(self, validated_data):
         validated_data['plataforma'] = validated_data.get(
             'contacto_tipo', 'pagina web'
         )
         return super().create(validated_data)
+
 
 
 

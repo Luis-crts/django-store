@@ -76,13 +76,11 @@ class Orden(models.Model):
         blank=True
     )
 
-    # (SELECT)
     contacto_tipo = models.CharField(
         max_length=20,
         choices=CONTACTO_TIPO_CHOICES
     )
 
-    # (texto)
     contacto_valor = models.CharField(
         max_length=200,
         blank=True

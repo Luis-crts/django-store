@@ -7,13 +7,13 @@ from .models import Insumo, Orden
 from .serializers import InsumoSerializer, OrdenSerializer
 
 
-# ========= API 1 =========
+#  API 1 
 class InsumoViewSet(viewsets.ModelViewSet):
     queryset = Insumo.objects.all()
     serializer_class = InsumoSerializer
 
 
-# ========= API 2 =========
+#  API 2 
 class PedidoRestrictedViewSet(
     mixins.CreateModelMixin,
     mixins.UpdateModelMixin,
@@ -23,7 +23,7 @@ class PedidoRestrictedViewSet(
     serializer_class = OrdenSerializer
 
 
-# ========= API 3 =========
+#  API 3 
 @api_view(["GET"])
 def filtrar_pedidos(request, inicio, fin, estado, limite):
     pedidos = Orden.objects.all()
