@@ -77,6 +77,7 @@ class OrdenImagenInline(admin.TabularInline):
     imagen_tag.short_description = 'Imagen'
 
 @admin.register(Orden)
+@admin.register(Orden)
 class OrdenAdmin(admin.ModelAdmin):
     list_display = ('token', 'cliente_nombre', 'estado', 'estado_pago', 'producto_referencia', 'creado')
     list_filter = ('estado', 'estado_pago', 'creado')
@@ -85,7 +86,7 @@ class OrdenAdmin(admin.ModelAdmin):
     ordering = ('-creado',)
     readonly_fields = ('token', 'creado', 'actualizado')
     inlines = (OrdenItemInline, OrdenImagenInline)
-    
+
     fieldsets = (
         ('Información del pedido', {
             'fields': ('token', 'cliente_nombre', 'contacto', 'creado', 'actualizado')
@@ -98,6 +99,13 @@ class OrdenAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
     )
+
+    def save_model(self, request, obj, form, change):
+        if obj.estado_pago == 'pagado':
+            obj.estado = 'completado'
+
+        super().save_model(request, obj, form, change)
+
 
 @admin.register(OrdenImagen)
 class OrdenImagenAdmin(admin.ModelAdmin):
