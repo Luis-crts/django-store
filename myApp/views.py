@@ -4,6 +4,8 @@ from django.urls import reverse
 from .models import Producto, Categoria, Orden, OrdenImagen, OrdenItem
 from django.db.models import Count, Q, Sum
 from django.db import models
+from django.contrib.admin.views.decorators import staff_member_required
+
 import secrets
 
 
@@ -134,6 +136,7 @@ def seguimiento_pedido(request, token):
     return render(request, 'seguimiento_pedido.html', {'orden': orden})
 
 
+@staff_member_required
 def listar_seguimientos(request):
     ordenes = Orden.objects.all().order_by('-creado')
 
@@ -145,11 +148,13 @@ def listar_seguimientos(request):
     page_number = request.GET.get('page')
     ordenes = paginator.get_page(page_number)
 
-    return render(request, 'listar_seguimientos.html', {
+    context = {
         'ordenes': ordenes,
         'estados': Orden.ESTADO_CHOICES,
         'estado_filtro': estado,
-    })
+    }
+    return render(request, 'listar_seguimientos.html', context)
+
 
 
 def reportes(request):
