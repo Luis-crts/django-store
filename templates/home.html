@@ -123,27 +123,19 @@
             </div>
 
             <!-- Botón CLIENTE -->
-            <a href="{% url 'buscar_pedido' %}"
-               class="btn btn-outline-primary w-100 mb-2">
-                Seguir mi pedido
-            </a>
+            <a href="{% url 'buscar_pedido' %}" class="btn btn-outline-primary w-100 mb-2">Seguir mi pedido</a>
+
 
             <!-- Botones ADMIN -->
             {% if user.is_authenticated and user.is_staff %}
 
-                <!-- Seguimientos -->
-                <a href="{% url 'listar_seguimientos' %}"
-                   class="btn btn-primary w-100 mb-2">
-                    Seguimientos de productos
-                </a>
+            <a href="{% url 'listar_seguimientos' %}" class="btn btn-primary w-100 mb-2">Seguimientos de productos</a>
 
-                <!-- Reportes -->
-                <a href="{% url 'reportes' %}"
-                   class="btn btn-info w-100">
-                    Sistema de reportes
-                </a>
+            <a href="{% url 'vista_reporte' %}" class="btn btn-info w-100 mb-2">Sistema de reportes</a>
 
+            <a href="{% url 'reporte_dashboard' %}" class="btn btn-secondary w-100">Dashboard</a>
             {% endif %}
+
 
         </div>
     </div>

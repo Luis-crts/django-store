@@ -8,7 +8,6 @@ from myApp.views_reports import vista_reporte, reporte_dashboard
 
 
 urlpatterns = [
-
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('producto/<int:pk>/', views.detalle_producto, name='detalle_producto'),
