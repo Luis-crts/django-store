@@ -22,7 +22,6 @@ class PedidoRestrictedViewSet(
     queryset = Orden.objects.all()
     serializer_class = OrdenSerializer
 
-
 #  API 3 
 @api_view(["GET"])
 def filtrar_pedidos(request, inicio, fin, estado, limite):

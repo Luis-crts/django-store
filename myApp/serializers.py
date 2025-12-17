@@ -56,7 +56,6 @@ class OrdenSerializer(serializers.ModelSerializer):
             'actualizado',
         )
 
-    #validaciones personalizadas para estado y estado_pago
     def validate(self, data):
         estado = data.get('estado')
         estado_pago = data.get('estado_pago')
@@ -81,7 +80,7 @@ class OrdenSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         estado = validated_data.get("estado", instance.estado)
 
-        # Automatización extra por si a caso
+        # Automatización extra (seguridad)
         if estado == "completado":
             validated_data["estado_pago"] = "pagado"
 
@@ -92,6 +91,7 @@ class OrdenSerializer(serializers.ModelSerializer):
             'contacto_tipo', 'pagina web'
         )
         return super().create(validated_data)
+
 
 
 
