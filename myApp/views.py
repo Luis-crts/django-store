@@ -156,7 +156,7 @@ def listar_seguimientos(request):
     return render(request, 'listar_seguimientos.html', context)
 
 
-
+@staff_member_required
 def reportes(request):
     producto_mas_pedido = (
         OrdenItem.objects

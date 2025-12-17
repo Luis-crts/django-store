@@ -177,8 +177,15 @@
             </div>
 
             <!-- Botones para funcionalidades -->
+            {% if user.is_authenticated and user.is_staff %}
             <a href="{% url 'listar_seguimientos' %}" class="btn btn-primary w-100 mb-2">Seguimientos de productos</a>
-            
+            {% endif %}
+
+            <!-- Solo admin -->
+             {% if user.is_authenticated and user.is_staff %}
+            <a href="{% url 'listar_seguimientos' %}" class="btn btn-secondary w-100">Ver todos los pedidos</a>
+            {% endif %}
+
             {% if user.is_authenticated and user.is_staff %}
             <a href="{% url 'reportes' %}" class="btn btn-info w-100">Sistema de reportes</a>
             {% endif %}
