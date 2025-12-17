@@ -1,6 +1,9 @@
 from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
+from .models import Orden
+from .serializers import OrdenSerializer
 from django.utils.dateparse import parse_date
 
 from .models import Insumo, Orden
@@ -44,3 +47,22 @@ def filtrar_pedidos(request, inicio, fin, estado, limite):
     serializer = OrdenSerializer(pedidos, many=True)
     return Response(serializer.data)
 
+@api_view(['PATCH'])
+def actualizar_pedido(request, pk):
+    try:
+        orden = Orden.objects.get(pk=pk)
+    except Orden.DoesNotExist:
+        return Response(
+            {"error": "pedido no existe"},
+            status=status.HTTP_404_NOT_FOUND
+        )
+    serializer = OrdenSerializer(
+        orden,
+        data=request.data,
+        partial=True
+    )
+    
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
