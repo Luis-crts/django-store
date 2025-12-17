@@ -64,6 +64,12 @@ class OrdenSerializer(serializers.ModelSerializer):
             validated_data["estado_pago"] = "pagado"
 
         return super().update(instance, validated_data)
+    
+    def create(self, validated_data):
+        validated_data['plataforma'] = validated_data.get(
+            'contacto_tipo', 'pagina web'
+        )
+        return super().create(validated_data)
 
 
 
