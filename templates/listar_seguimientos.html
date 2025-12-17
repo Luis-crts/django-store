@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Seguimientos de productos</title>
+    <title>Seguimiento de pedidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
@@ -16,28 +16,65 @@
 </div>
 
 <div class="container py-4">
-    <h2>Seguimientos de productos</h2>
+    <h2 class="mb-4">Seguimiento de pedidos</h2>
 
-    <!-- Filtros por estado -->
+    <!-- CLIENTE: buscar por token -->
+    {% if not es_admin %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Buscar pedido por token</h5>
+            <form method="get" class="d-flex gap-2">
+                <input
+                    type="text"
+                    name="token"
+                    class="form-control"
+                    placeholder="Ej: 4UjNtrBrWtawbx47"
+                    value="{{ token|default:'' }}"
+                    required
+                >
+                <button type="submit" class="btn btn-primary">
+                    Buscar
+                </button>
+            </form>
+            <small class="text-muted d-block mt-2">
+                Ingresa el token que recibiste al realizar tu pedido.
+            </small>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- ADMIN filtros -->
+    {% if es_admin %}
     <div class="card mb-3">
         <div class="card-body">
             <h5>Filtrar por estado:</h5>
-            <div class="btn-group" role="group">
-                <a href="{% url 'listar_seguimientos' %}" class="btn btn-outline-primary {% if not estado_filtro %}active{% endif %}">Todos</a>
+            <div class="btn-group flex-wrap" role="group">
+                <a href="{% url 'listar_seguimientos' %}"
+                   class="btn btn-outline-primary {% if not estado_filtro %}active{% endif %}">
+                    Todos
+                </a>
                 {% for valor, etiqueta in estados %}
-                    <a href="?estado={{ valor }}" class="btn btn-outline-primary {% if estado_filtro == valor %}active{% endif %}">{{ etiqueta }}</a>
+                    <a href="?estado={{ valor }}"
+                       class="btn btn-outline-primary {% if estado_filtro == valor %}active{% endif %}">
+                        {{ etiqueta }}
+                    </a>
                 {% endfor %}
             </div>
         </div>
     </div>
+    {% endif %}
 
-    <!-- Tabla de pedidos -->
+    <!-- TABLA DE PEDIDOS -->
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover align-middle">
             <thead class="table-dark">
                 <tr>
                     <th>Token</th>
+
+                    {% if es_admin %}
                     <th>Cliente</th>
+                    {% endif %}
+
                     <th>Producto</th>
                     <th>Estado</th>
                     <th>Pago</th>
@@ -47,74 +84,111 @@
             </thead>
             <tbody>
                 {% for orden in ordenes %}
-                    <tr>
-                        <td><strong>{{ orden.token }}</strong></td>
-                        <td>{{ orden.cliente_nombre }}</td>
-                        <td>{% if orden.producto_referencia %}{{ orden.producto_referencia.nombre }}{% else %}—{% endif %}</td>
-                        <td>
-                            <span class="badge 
-                                {% if orden.estado == 'solicitado' %}bg-warning{% endif %}
-                                {% if orden.estado == 'en_proceso' %}bg-info{% endif %}
-                                {% if orden.estado == 'completado' %}bg-success{% endif %}
-                                {% if orden.estado == 'cancelado' %}bg-danger{% endif %}
-                            ">
-                                {{ orden.get_estado_display }}
-                            </span>
-                        </td>
-                        <td>
-                            <span class="badge {% if orden.estado_pago == 'pagado' %}bg-success{% else %}bg-warning{% endif %}">
-                                {{ orden.get_estado_pago_display }}
-                            </span>
-                        </td>
-                        <td>{{ orden.creado|date:"d/m/Y H:i" }}</td>
-                        <td>
-                            <a href="{% url 'seguimiento_pedido' orden.token %}" class="btn btn-sm btn-primary">Ver</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><strong>{{ orden.token }}</strong></td>
+
+                    {% if es_admin %}
+                    <td>{{ orden.cliente_nombre }}</td>
+                    {% endif %}
+
+                    <td>
+                        {% if orden.producto_referencia %}
+                            {{ orden.producto_referencia.nombre }}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <span class="badge
+                            {% if orden.estado == 'solicitado' %}bg-warning{% endif %}
+                            {% if orden.estado == 'en_proceso' %}bg-info{% endif %}
+                            {% if orden.estado == 'completado' %}bg-success{% endif %}
+                            {% if orden.estado == 'cancelado' %}bg-danger{% endif %}
+                        ">
+                            {{ orden.get_estado_display }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge
+                            {% if orden.estado_pago == 'pagado' %}bg-success{% else %}bg-warning{% endif %}
+                        ">
+                            {{ orden.get_estado_pago_display }}
+                        </span>
+                    </td>
+
+                    <td>{{ orden.creado|date:"d/m/Y H:i" }}</td>
+
+                    <td>
+                        <a href="{% url 'seguimiento_pedido' orden.token %}"
+                           class="btn btn-sm btn-primary">
+                            Ver
+                        </a>
+                    </td>
+                </tr>
                 {% empty %}
-                    <tr>
-                        <td colspan="7" class="text-center text-muted">No hay pedidos disponibles.</td>
-                    </tr>
+                <tr>
+                    <td colspan="{% if es_admin %}7{% else %}6{% endif %}"
+                        class="text-center text-muted">
+                        No hay pedidos para mostrar.
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
-    <!-- Paginación -->
-    {% if ordenes.has_other_pages %}
-        <nav aria-label="Paginación" class="mt-4">
-            <ul class="pagination justify-content-center">
-                {% if ordenes.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page=1{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">« Primera</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ ordenes.previous_page_number }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">‹ Anterior</a>
-                    </li>
-                {% endif %}
+    <!-- PAGINACIÓN (solo admin) -->
+    {% if es_admin and ordenes.has_other_pages %}
+    <nav aria-label="Paginación" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if ordenes.has_previous %}
+            <li class="page-item">
+                <a class="page-link"
+                   href="?page=1{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">
+                    « Primera
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="?page={{ ordenes.previous_page_number }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">
+                    ‹ Anterior
+                </a>
+            </li>
+            {% endif %}
 
-                {% for num in ordenes.paginator.page_range %}
-                    {% if ordenes.number == num %}
-                        <li class="page-item active">
-                            <span class="page-link">{{ num }}</span>
-                        </li>
-                    {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ num }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">{{ num }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-
-                {% if ordenes.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ ordenes.next_page_number }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">Siguiente ›</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ ordenes.paginator.num_pages }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">Última »</a>
-                    </li>
+            {% for num in ordenes.paginator.page_range %}
+                {% if ordenes.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ num }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">
+                        {{ num }}
+                    </a>
+                </li>
                 {% endif %}
-            </ul>
-        </nav>
+            {% endfor %}
+
+            {% if ordenes.has_next %}
+            <li class="page-item">
+                <a class="page-link"
+                   href="?page={{ ordenes.next_page_number }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">
+                    Siguiente ›
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="?page={{ ordenes.paginator.num_pages }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">
+                    Última »
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
     {% endif %}
 </div>
 
