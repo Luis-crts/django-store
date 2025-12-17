@@ -6,7 +6,6 @@ from django.db.models import Count, Q, Sum
 from django.db import models
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, get_object_or_404, redirect
-
 import secrets
 
 

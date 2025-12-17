@@ -17,6 +17,7 @@ class InsumoViewSet(viewsets.ModelViewSet):
 
 
 #  API 2 
+@api_view(['PATCH'])
 class PedidoRestrictedViewSet(
     mixins.CreateModelMixin,
     mixins.UpdateModelMixin,
