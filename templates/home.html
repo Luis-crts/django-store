@@ -10,70 +10,80 @@
 </head>
 <body>
 
-<div class="header">
+<div class="header bg-dark text-white py-3 mb-4">
     <div class="container">
-        <h1>Tienda con artículos personalizados</h1>
+        <h1 class="mb-0">Tienda con artículos personalizados</h1>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <!-- Lista de producto -->
+
+        <!-- LISTA DE PRODUCTOS -->
         <div class="col-lg-9">
             <h2 class="mb-4">Productos</h2>
-            
+
             {% if productos %}
                 <div class="row g-4 mb-4">
                     {% for producto in productos %}
                         <div class="col-lg-4 col-md-6">
-                            <div class="card producto-card">
-                                <!-- Imagen del producto -->
-                                {% if producto.imagenes.all %}
-                                    <img src="{{ producto.imagenes.first.imagen.url }}" alt="{{ producto.nombre }}" class="card-img-top producto-imagen">
+                            <div class="card h-100">
+
+                                {% if producto.imagenes.first %}
+                                    <img src="{{ producto.imagenes.first.imagen.url }}"
+                                         class="card-img-top"
+                                         alt="{{ producto.nombre }}">
                                 {% else %}
-                                    <div class="producto-imagen d-flex align-items-center justify-content-center bg-light">
+                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                                         style="height: 200px;">
                                         <span class="text-muted">Sin imagen</span>
                                     </div>
                                 {% endif %}
-                                
-                                <!-- Información del producto -->
+
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">
-                                        <a href="{% url 'detalle_producto' producto.pk %}" class="text-decoration-none text-dark">
+                                        <a href="{% url 'detalle_producto' producto.pk %}"
+                                           class="text-decoration-none text-dark">
                                             {{ producto.nombre }}
                                         </a>
                                     </h5>
-                                    <p class="card-text text-muted">{{ producto.descripcion|truncatewords:10 }}</p>
-                                    
+
+                                    <p class="text-muted">
+                                        {{ producto.descripcion|truncatewords:10 }}
+                                    </p>
+
                                     <div class="mt-auto">
-                                        <div class="precio mb-2">${{ producto.precio }}</div>
-                                        <div class="stock">
-                                            {% if producto.stock > 0 %}
-                                                <span class="badge bg-success">✓ En stock ({{ producto.stock }})</span>
-                                            {% else %}
-                                                <span class="badge bg-danger">✗ Sin stock</span>
-                                            {% endif %}
-                                        </div>
+                                        <p class="fw-bold text-success mb-1">
+                                            ${{ producto.precio }}
+                                        </p>
+
+                                        {% if producto.stock > 0 %}
+                                            <span class="badge bg-success">
+                                                En stock ({{ producto.stock }})
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-danger">
+                                                Sin stock
+                                            </span>
+                                        {% endif %}
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                
-                <!-- Paginacion -->
+
+                <!-- PAGINACIÓN -->
                 {% if productos.has_other_pages %}
-                    <nav aria-label="Paginación" class="mb-5">
+                    <nav>
                         <ul class="pagination justify-content-center">
                             {% if productos.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page=1">« Primera</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ productos.previous_page_number }}">‹ Anterior</a>
+                                    <a class="page-link" href="?page={{ productos.previous_page_number }}">‹</a>
                                 </li>
                             {% endif %}
-                            
+
                             {% for num in productos.paginator.page_range %}
                                 {% if productos.number == num %}
                                     <li class="page-item active">
@@ -85,110 +95,81 @@
                                     </li>
                                 {% endif %}
                             {% endfor %}
-                            
+
                             {% if productos.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ productos.next_page_number }}">Siguiente ›</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ productos.paginator.num_pages }}">Última »</a>
+                                    <a class="page-link" href="?page={{ productos.next_page_number }}">›</a>
                                 </li>
                             {% endif %}
                         </ul>
                     </nav>
                 {% endif %}
             {% else %}
-                <div class="sin-productos">
-                    <p>No hay productos disponibles.</p>
-                </div>
+                <p>No hay productos disponibles.</p>
             {% endif %}
         </div>
 
-        <!-- Sidebar para el filtro -->
+        <!-- SIDEBAR -->
         <div class="col-lg-3">
+
+            <!-- BUSCAR -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Buscar</h5>
-                    <form method="GET" class="mb-3">
+                    <h5>Buscar</h5>
+                    <form method="get">
                         <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Buscar productos..." value="{{ q }}">
-                            <button class="btn btn-primary" type="submit">🔍</button>
+                            <input type="text"
+                                   name="q"
+                                   class="form-control"
+                                   placeholder="Buscar productos..."
+                                   value="{{ q }}">
+                            <button class="btn btn-primary">🔍</button>
                         </div>
-                        {% if q %}
-                            <a href="?" class="btn btn-sm btn-outline-secondary mt-2 w-100">Limpiar búsqueda</a>
-                        {% endif %}
                     </form>
                 </div>
             </div>
 
+            <!-- CATEGORÍAS -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Categorías</h5>
-                    <ul class="filtro-categoria">
+                    <h5>Categorías</h5>
+                    <ul class="list-unstyled">
                         <li>
-                            {% if categoria_seleccionada %}
-                                {% if q %}
-                                    <a href="?q={{ q }}">Todas</a>
-                                {% else %}
-                                    <a href="?">Todas</a>
-                                {% endif %}
-                            {% else %}
-                                {% if q %}
-                                    <a href="?q={{ q }}" class="active">Todas</a>
-                                {% else %}
-                                    <a href="?" class="active">Todas</a>
-                                {% endif %}
-                            {% endif %}
+                            <a href="?" class="{% if not categoria_seleccionada %}fw-bold{% endif %}">
+                                Todas
+                            </a>
                         </li>
-
                         {% for categoria in categorias %}
                             <li>
-                                {% if categoria_seleccionada and categoria_seleccionada.id == categoria.id %}
-                                    {% if q %}
-                                        <a href="?categoria={{ categoria.id }}&q={{ q }}" class="active">
-                                            {{ categoria.nombre }}
-                                        </a>
-                                    {% else %}
-                                        <a href="?categoria={{ categoria.id }}" class="active">
-                                            {{ categoria.nombre }}
-                                        </a>
-                                    {% endif %}
-                                {% else %}
-                                    {% if q %}
-                                        <a href="?categoria={{ categoria.id }}&q={{ q }}">
-                                            {{ categoria.nombre }}
-                                        </a>
-                                    {% else %}
-                                        <a href="?categoria={{ categoria.id }}">
-                                            {{ categoria.nombre }}
-                                        </a>
-                                    {% endif %}
-                                {% endif %}
+                                <a href="?categoria={{ categoria.id }}"
+                                   class="{% if categoria_seleccionada and categoria_seleccionada.id == categoria.id %}fw-bold{% endif %}">
+                                    {{ categoria.nombre }}
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>
-                    
-                    {% if categoria_seleccionada or q %}
-                        <div class="limpiar-filtros">
-                            <a href="?" class="btn btn-sm btn-outline-secondary w-100">Limpiar filtros</a>
-                        </div>
-                    {% endif %}
                 </div>
             </div>
 
-            <!-- Botones para funcionalidades -->
+            <!-- CLIENTE: buscar pedido -->
+            <a href="{% url 'buscar_pedido' %}"
+               class="btn btn-outline-primary w-100 mb-2">
+                🔎 Seguir mi pedido
+            </a>
+
+            <!-- ADMIN -->
             {% if user.is_authenticated and user.is_staff %}
-            <a href="{% url 'listar_seguimientos' %}" class="btn btn-primary w-100 mb-2">Seguimientos de productos</a>
+                <a href="{% url 'listar_seguimientos' %}"
+                   class="btn btn-primary w-100 mb-2">
+                    📦 Ver todos los pedidos
+                </a>
+
+                <a href="{% url 'reportes' %}"
+                   class="btn btn-info w-100">
+                    📊 Sistema de reportes
+                </a>
             {% endif %}
 
-            <!-- Solo admin -->
-             {% if user.is_authenticated and user.is_staff %}
-            <a href="{% url 'listar_seguimientos' %}" class="btn btn-secondary w-100">Ver todos los pedidos</a>
-            {% endif %}
-
-            {% if user.is_authenticated and user.is_staff %}
-            <a href="{% url 'reportes' %}" class="btn btn-info w-100">Sistema de reportes</a>
-            {% endif %}
         </div>
     </div>
 </div>
