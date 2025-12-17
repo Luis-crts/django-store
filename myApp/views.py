@@ -5,6 +5,7 @@ from .models import Producto, Categoria, Orden, OrdenImagen, OrdenItem
 from django.db.models import Count, Q, Sum
 from django.db import models
 from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import render, get_object_or_404, redirect
 
 import secrets
 
@@ -199,3 +200,21 @@ def reportes(request):
         'pedidos_pendientes': pedidos_pendientes,
         'total_ingresos': total_ingresos,
     })
+
+def buscar_pedido(request):
+
+    error = None
+
+    if request.method == "POST":
+        token = request.POST.get("token", "").strip()
+
+        if not token:
+            error = "Debes ingresar un token."
+        else:
+            try:
+                orden = Orden.objects.get(token=token)
+                return redirect("seguimiento_pedido", token=orden.token)
+            except Orden.DoesNotExist:
+                error = "No existe un pedido con ese token."
+
+    return render(request, "buscar_pedido.html", {"error": error})
