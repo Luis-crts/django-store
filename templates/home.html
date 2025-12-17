@@ -179,7 +179,9 @@
             <!-- Botones para funcionalidades -->
             <a href="{% url 'listar_seguimientos' %}" class="btn btn-primary w-100 mb-2">Seguimientos de productos</a>
             
+            {% if user.is_authenticated and user.is_staff %}
             <a href="{% url 'reportes' %}" class="btn btn-info w-100">Sistema de reportes</a>
+            {% endif %}
         </div>
     </div>
 </div>
